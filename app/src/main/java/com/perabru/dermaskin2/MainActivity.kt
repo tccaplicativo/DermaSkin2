@@ -318,8 +318,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openAnaliseScreen() {
-        val intent = Intent(this, AnaliseActivity::class.java)
-        startActivity(intent)
+        val sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+
+        val lgpdAccepted = sharedPreferences.getBoolean("lgpd_accepted", false)
+        val healthProfileCompleted = sharedPreferences.getBoolean("health_profile_completed", false)
+
+        when {
+            !lgpdAccepted -> {
+                val intent = Intent(this, ConsentActivity::class.java)
+                startActivity(intent)
+            }
+
+            !healthProfileCompleted -> {
+                val intent = Intent(this, HealthProfileActivity::class.java)
+                startActivity(intent)
+            }
+
+            else -> {
+                val intent = Intent(this, AnaliseActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
         finish()
     }
 

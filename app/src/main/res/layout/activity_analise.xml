@@ -40,124 +40,201 @@
                     android:text="Triagem visual inteligente da pele"
                     android:textColor="#6B4A3A"
                     android:textSize="15sp" />
+
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnLogout"
-                android:layout_width="90dp"
+                android:layout_width="88dp"
                 android:layout_height="46dp"
-                android:backgroundTint="#F1D8CC"
+                android:backgroundTint="#E8C9B8"
                 android:text="Sair"
                 android:textAllCaps="false"
-                android:textColor="#7A2E1D"
+                android:textColor="#4A2A1A"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_card"
+            android:elevation="5dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nova análise"
+                android:textColor="#4A2A1A"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Tire uma foto nítida da lesão, responda se houve mudança recente e gere uma triagem visual com apoio de IA."
+                android:textColor="#6B4A3A"
+                android:textSize="14sp" />
+
+            <FrameLayout
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/imgPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_circle"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_skin_placeholder" />
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="#80FFFFFF" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_gravity="center"
+                    android:background="#80FFFFFF" />
+
+                <View
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_focus_ring" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="12dp"
+                    android:background="#99000000"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="5dp"
+                    android:text="centralize aqui"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <CheckBox
+                android:id="@+id/checkEvolution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:buttonTint="#8B4A2F"
+                android:text="A mancha mudou de cor, formato, coçou, sangrou ou cresceu recentemente?"
+                android:textColor="#3A2A24"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnCamera"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#8B4A2F"
+                android:text="Tirar foto da mancha"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnAnalyze"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#4A2A1A"
+                android:enabled="false"
+                android:text="Analisar com IA"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnExportPdf"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#E8C9B8"
+                android:enabled="false"
+                android:text="Exportar relatório"
+                android:textAllCaps="false"
+                android:textColor="#4A2A1A"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="Posicione a mancha dentro do círculo central para melhorar a análise."
-            android:textAlignment="center"
-            android:textColor="#6B4A3A"
-            android:textSize="14sp" />
+            android:layout_marginTop="24dp"
+            android:text="Ações rápidas"
+            android:textColor="#4A2A1A"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
-        <FrameLayout
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp">
-
-            <ImageView
-                android:id="@+id/imgPreview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_circle"
-                android:padding="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_skin_placeholder" />
-
-            <View
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="#80FFFFFF" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_gravity="center"
-                android:background="#80FFFFFF" />
-
-            <View
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:background="@drawable/bg_focus_ring" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="12dp"
-                android:background="#99000000"
-                android:paddingLeft="12dp"
-                android:paddingTop="5dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="5dp"
-                android:text="centralize aqui"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-        </FrameLayout>
-
-        <CheckBox
-            android:id="@+id/checkEvolution"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="A mancha mudou de cor, formato, coçou, sangrou ou cresceu recentemente?"
-            android:textColor="#3A2A24"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/btnCamera"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="22dp"
-            android:backgroundTint="#8B4A2F"
-            android:text="Tirar foto da mancha"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnAnalyze"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
             android:layout_marginTop="12dp"
-            android:backgroundTint="#4A2A1A"
-            android:enabled="false"
-            android:text="Analisar com IA"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnHistory"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginRight="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:text="Histórico"
+                android:textAllCaps="false"
+                android:textColor="#4A2A1A"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnPrevention"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:text="Prevenção"
+                android:textAllCaps="false"
+                android:textColor="#4A2A1A"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/btnExportPdf"
+            android:id="@+id/btnReferral"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="56dp"
             android:layout_marginTop="12dp"
-            android:backgroundTint="#E8C9B8"
-            android:enabled="false"
-            android:text="Exportar Relatório"
+            android:backgroundTint="#FFFFFF"
+            android:text="Encaminhamento / clínicas parceiras"
             android:textAllCaps="false"
             android:textColor="#4A2A1A"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ProgressBar
@@ -182,7 +259,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chance de risco"
+                android:text="Classificação de prioridade"
                 android:textColor="#8B4A2F"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -262,7 +339,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resultado da análise"
+                android:text="Detalhes da análise"
                 android:textColor="#4A2A1A"
                 android:textSize="23sp"
                 android:textStyle="bold" />
@@ -297,15 +374,33 @@
 
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
-            android:lineSpacingExtra="3dp"
-            android:text="Atenção: este aplicativo não substitui consulta médica. A análise é apenas uma triagem visual por inteligência artificial."
-            android:textAlignment="center"
-            android:textColor="#6B4A3A"
-            android:textSize="13sp" />
+            android:background="#FFF8F2"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aviso importante"
+                android:textColor="#4A2A1A"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Este aplicativo não substitui consulta médica. A análise é apenas uma triagem visual com apoio de inteligência artificial."
+                android:textColor="#6B4A3A"
+                android:textSize="13sp" />
+
+        </LinearLayout>
 
         <WebView
             android:id="@+id/webViewIA"

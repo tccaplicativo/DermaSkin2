@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
     <!-- Permissão para usar a câmera -->
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- Permissão para acessar a internet e carregar a IA do Teachable Machine -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Permite instalar o app mesmo em aparelhos sem câmera -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Permissão para acessar a internet e carregar a IA do Teachable Machine -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Permite instalar o app mesmo em aparelhos sem câmera -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -23,21 +18,24 @@
         android:theme="@style/Theme.DermaSkin2"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".AnaliseActivity"
-            android:hardwareAccelerated="false"
+            android:name=".HealthProfileActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".ConsentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnaliseActivity"
+            android:exported="false"
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

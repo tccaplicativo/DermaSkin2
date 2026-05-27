@@ -49,6 +49,9 @@ class AnaliseActivity : AppCompatActivity() {
     private lateinit var btnAnalyze: Button
     private lateinit var btnExportPdf: Button
     private lateinit var btnLogout: Button
+    private lateinit var btnHistory: Button
+    private lateinit var btnPrevention: Button
+    private lateinit var btnReferral: Button
 
     private lateinit var progress: ProgressBar
 
@@ -161,6 +164,9 @@ class AnaliseActivity : AppCompatActivity() {
         configurarEstadoInicial()
         configurarWebViewIA()
         configurarCliques()
+        btnHistory = findViewById(R.id.btnHistory)
+        btnPrevention = findViewById(R.id.btnPrevention)
+        btnReferral = findViewById(R.id.btnReferral)
     }
 
     override fun onDestroy() {
@@ -227,6 +233,17 @@ class AnaliseActivity : AppCompatActivity() {
     private fun configurarCliques() {
         btnCamera.setOnClickListener {
             showPhotoInstructionDialog()
+            btnHistory.setOnClickListener {
+                Toast.makeText(this, "Tela de histórico será adicionada.", Toast.LENGTH_SHORT).show()
+            }
+
+            btnPrevention.setOnClickListener {
+                Toast.makeText(this, "Tela de orientações e prevenção será adicionada.", Toast.LENGTH_SHORT).show()
+            }
+
+            btnReferral.setOnClickListener {
+                Toast.makeText(this, "Tela de encaminhamento será adicionada.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         btnAnalyze.setOnClickListener {

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootConsent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7EFE8"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DermaSkin"
+            android:textColor="#4A2A1A"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Consentimento e proteção de dados"
+            android:textColor="#6B4A3A"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:background="#FFFFFF"
+            android:elevation="5dp"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Termo de Consentimento e LGPD"
+                android:textColor="#4A2A1A"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="4dp"
+                android:text="Antes de utilizar o aplicativo, é necessário autorizar o uso das informações fornecidas durante a triagem."
+                android:textColor="#3A2A24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="4dp"
+                android:text="O DermaSkin poderá coletar imagem da lesão cutânea, respostas do questionário clínico, histórico de análises e informações básicas de saúde."
+                android:textColor="#3A2A24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="4dp"
+                android:text="Esses dados serão utilizados apenas para apoiar a triagem inicial, gerar relatório, acompanhar a evolução da lesão e orientar o encaminhamento para avaliação profissional."
+                android:textColor="#3A2A24"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="4dp"
+                android:text="O aplicativo não realiza diagnóstico médico definitivo e não substitui consulta com dermatologista ou profissional de saúde."
+                android:textColor="#B3261E"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="4dp"
+                android:text="O usuário poderá solicitar a exclusão de seus dados, conforme os princípios da Lei Geral de Proteção de Dados Pessoais — LGPD."
+                android:textColor="#3A2A24"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkConsent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:buttonTint="#8B4A2F"
+            android:text="Li e aceito o termo de consentimento para uso dos meus dados."
+            android:textColor="#3A2A24"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnAcceptConsent"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="22dp"
+            android:backgroundTint="#8B4A2F"
+            android:text="Aceitar e continuar"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnDeclineConsent"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#E8C9B8"
+            android:text="Não aceitar"
+            android:textAllCaps="false"
+            android:textColor="#4A2A1A"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:text="A autorização é necessária porque o aplicativo utiliza dados sensíveis de saúde para realizar a triagem visual."
+            android:textColor="#6B4A3A"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</ScrollView>
