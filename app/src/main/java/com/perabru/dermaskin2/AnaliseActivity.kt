@@ -232,7 +232,8 @@ class AnaliseActivity : AppCompatActivity() {
 
     private fun configurarCliques() {
         btnCamera.setOnClickListener {
-            showPhotoInstructionDialog()
+            val intent = Intent(this, SelecionarAreaActivity::class.java)
+            startActivity(intent)
             btnHistory.setOnClickListener {
                 Toast.makeText(this, "Tela de histórico será adicionada.", Toast.LENGTH_SHORT).show()
             }

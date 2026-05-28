@@ -18,6 +18,57 @@
         android:theme="@style/Theme.DermaSkin2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MetricasImpactoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PainelProfissionalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AcessibilidadeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilPrivacidadeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EncaminhamentoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrientacoesPrevencaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MonitoramentoLesaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoricoAnalisesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RelatorioProfissionalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MetodoAbcdeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResultadoTriagemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProcessamentoiaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionarioLesaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValidacaoFotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CapturaImagemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GuiaCapturaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelecionarAreaActivity"
+            android:exported="false" />
+        <activity
             android:name=".HealthProfileActivity"
             android:exported="false" />
         <activity
