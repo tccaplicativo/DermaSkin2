@@ -1,142 +1,425 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootConsent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7EFE8"
-    android:fillViewport="true">
+    android:background="@drawable/bg_login_base">
 
-    <LinearLayout
+    <!-- Pontinhos -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.30"
+        android:src="@drawable/bg_dots_dermaprev" />
+
+    <!-- Hexágonos -->
+    <ImageView
+        android:layout_width="185dp"
+        android:layout_height="220dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="-26dp"
+        android:alpha="0.18"
+        android:src="@drawable/bg_hex_dermaprev" />
+
+    <!-- Ondas inferiores -->
+    <ImageView
+        android:layout_width="310dp"
+        android:layout_height="120dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="-95dp"
+        android:layout_marginBottom="-12dp"
+        android:alpha="0.30"
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
+
+    <ImageView
+        android:layout_width="310dp"
+        android:layout_height="120dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="-95dp"
+        android:layout_marginBottom="-12dp"
+        android:alpha="0.30"
+        android:rotationY="180"
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="22dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DermaSkin"
-            android:textColor="#4A2A1A"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Consentimento e proteção de dados"
-            android:textColor="#6B4A3A"
-            android:textSize="15sp" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:background="#FFFFFF"
-            android:elevation="5dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="22dp">
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="12dp">
+
+            <!-- Marca -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="Logo DermaPrev"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo_dermaprev" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Derma"
+                        android:textColor="#063B78"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prev"
+                        android:textColor="#1DB9D2"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Termo de Consentimento e LGPD"
-                android:textColor="#4A2A1A"
-                android:textSize="24sp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="Consentimento e privacidade"
+                android:textColor="#063B78"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Antes de utilizar o aplicativo, é necessário autorizar o uso das informações fornecidas durante a triagem."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:lineSpacingExtra="2dp"
+                android:text="Para continuar, precisamos do seu consentimento para:"
+                android:textColor="#68798F"
+                android:textSize="14sp" />
 
-            <TextView
+            <!-- Card -->
+            <LinearLayout
+                android:id="@+id/cardConsent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:lineSpacingExtra="4dp"
-                android:text="O DermaSkin poderá coletar imagem da lesão cutânea, respostas do questionário clínico, histórico de análises e informações básicas de saúde."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="6dp"
+                android:orientation="vertical"
+                android:paddingStart="18dp"
+                android:paddingTop="18dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="16dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Esses dados serão utilizados apenas para apoiar a triagem inicial, gerar relatório, acompanhar a evolução da lesão e orientar o encaminhamento para avaliação profissional."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
+                <!-- Item 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:lineSpacingExtra="4dp"
-                android:text="O aplicativo não realiza diagnóstico médico definitivo e não substitui consulta com dermatologista ou profissional de saúde."
-                android:textColor="#B3261E"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                    <FrameLayout
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_icon_circle_dermaprev">
 
-            <TextView
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_shield_lock_dermaprev"
+                            app:tint="#0B7EB0" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Consentimento informado"
+                            android:textColor="#063B78"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:lineSpacingExtra="2dp"
+                            android:text="Para uso dos seus dados conforme descrito nesta política."
+                            android:textColor="#68798F"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#DCE8F3" />
+
+                <!-- Item 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_icon_circle_dermaprev">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_lock_dermaprev"
+                            app:tint="#0B7EB0" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Proteção de dados pessoais"
+                            android:textColor="#063B78"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:lineSpacingExtra="2dp"
+                            android:text="Seus dados são protegidos com segurança e não serão compartilhados."
+                            android:textColor="#68798F"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#DCE8F3" />
+
+                <!-- Item 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_icon_circle_dermaprev">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_eye_dermaprev"
+                            app:tint="#0B7EB0" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Apoio à triagem preventiva"
+                            android:textColor="#063B78"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:lineSpacingExtra="2dp"
+                            android:text="A IA não realiza diagnóstico e não substitui a avaliação de um dermatologista."
+                            android:textColor="#68798F"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#DCE8F3" />
+
+                <!-- Item 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_icon_circle_dermaprev">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_email_dermaprev"
+                            app:tint="#0B7EB0" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="De acordo com a LGPD"
+                            android:textColor="#063B78"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:lineSpacingExtra="2dp"
+                            android:text="Seguimos a Lei Geral de Proteção de Dados (Lei nº 13.709/2018)."
+                            android:textColor="#68798F"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center"
+                    android:text="Ver política de privacidade completa"
+                    android:textColor="#0B58E6"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/checkConsent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:buttonTint="@color/checkbox_tint_dermaprev"
+                android:text="Li e aceito o termo de consentimento para uso dos meus dados."
+                android:textColor="#68798F"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnAcceptConsent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button_primary_dermaprev"
+                android:backgroundTint="@null"
+                android:text="Concordar e continuar"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btnDeclineConsent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button_outline_dermaprev"
+                android:backgroundTint="@null"
+                android:text="Não concordo"
+                android:textAllCaps="false"
+                android:textColor="#0B58E6"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:lineSpacingExtra="4dp"
-                android:text="O usuário poderá solicitar a exclusão de seus dados, conforme os princípios da Lei Geral de Proteção de Dados Pessoais — LGPD."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_icon_circle_dermaprev">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_shield_lock_dermaprev"
+                        app:tint="#19B5CC" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Acesso seguro e protegido"
+                    android:textColor="#0B58E6"
+                    android:textSize="13sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/checkConsent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:buttonTint="#8B4A2F"
-            android:text="Li e aceito o termo de consentimento para uso dos meus dados."
-            android:textColor="#3A2A24"
-            android:textSize="15sp" />
+    </ScrollView>
 
-        <Button
-            android:id="@+id/btnAcceptConsent"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="22dp"
-            android:backgroundTint="#8B4A2F"
-            android:text="Aceitar e continuar"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnDeclineConsent"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E8C9B8"
-            android:text="Não aceitar"
-            android:textAllCaps="false"
-            android:textColor="#4A2A1A"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:gravity="center"
-            android:lineSpacingExtra="3dp"
-            android:text="A autorização é necessária porque o aplicativo utiliza dados sensíveis de saúde para realizar a triagem visual."
-            android:textColor="#6B4A3A"
-            android:textSize="13sp" />
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>

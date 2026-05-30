@@ -1,221 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootHealthProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7EFE8"
-    android:fillViewport="true">
+    android:background="@drawable/bg_login_base">
 
-    <LinearLayout
+    <!-- Pontinhos -->
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.30"
+        android:src="@drawable/bg_dots_dermaprev" />
+
+    <!-- Hexágonos -->
+    <ImageView
+        android:layout_width="190dp"
+        android:layout_height="230dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="-28dp"
+        android:alpha="0.18"
+        android:src="@drawable/bg_hex_dermaprev" />
+
+    <!-- Ondas inferiores -->
+    <ImageView
+        android:layout_width="330dp"
+        android:layout_height="130dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="-95dp"
+        android:layout_marginBottom="-12dp"
+        android:alpha="0.32"
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
+
+    <ImageView
+        android:layout_width="330dp"
+        android:layout_height="130dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="-95dp"
+        android:layout_marginBottom="-12dp"
+        android:alpha="0.32"
+        android:rotationY="180"
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="22dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DermaSkin"
-            android:textColor="#4A2A1A"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Perfil básico de saúde"
-            android:textColor="#6B4A3A"
-            android:textSize="15sp" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:background="#FFFFFF"
-            android:elevation="5dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="22dp">
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="18dp">
 
+            <!-- Marca -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:contentDescription="Logo DermaPrev"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo_dermaprev" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Derma"
+                        android:textColor="#063B78"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prev"
+                        android:textColor="#1DB9D2"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Título -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Antes da primeira análise"
-                android:textColor="#4A2A1A"
-                android:textSize="24sp"
+                android:layout_marginTop="24dp"
+                android:text="Perfil básico de saúde"
+                android:textColor="#063B78"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Essas informações ajudam a tornar a triagem mais completa, considerando fatores como idade, tipo de pele, exposição solar e histórico familiar."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:text="Faixa etária"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerAge"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="#FFF8F2"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
-
-            <TextView
+            <!-- Progresso -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Tipo de pele"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/spinnerSkinType"
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_progress_track_dermaprev">
+
+                    <View
+                        android:layout_width="90dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/bg_progress_fill_dermaprev" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="1/4"
+                    android:textColor="#063B78"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Card -->
+            <LinearLayout
+                android:id="@+id/cardHealthProfile"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="#FFF8F2"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="7dp"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Faixa etária"
+                    android:textColor="#063B78"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Tipo de pele"
+                    android:textColor="#063B78"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerSkinType"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Exposição solar diária"
+                    android:textColor="#063B78"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerSunExposure"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Uso de protetor solar"
+                    android:textColor="#063B78"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerSunscreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Histórico familiar de câncer de pele"
+                    android:textColor="#063B78"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerFamilyHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Lesões suspeitas anteriores"
+                    android:textColor="#063B78"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerPreviousLesions"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Rotina ao sol"
+                    android:textColor="#063B78"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerOutdoorWork"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
+                <Button
+                    android:id="@+id/btnSaveProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/bg_button_primary_dermaprev"
+                    android:backgroundTint="@null"
+                    android:text="Salvar e continuar"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+
+                <Button
+                    android:id="@+id/btnSkipProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_button_outline_dermaprev"
+                    android:backgroundTint="@null"
+                    android:text="Preencher depois"
+                    android:textAllCaps="false"
+                    android:textColor="#0B58E6"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Exposição solar"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerSunExposure"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="#FFF8F2"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Uso de protetor solar"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerSunscreen"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="#FFF8F2"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Histórico familiar"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerFamilyHistory"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="#FFF8F2"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Lesões anteriores"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerPreviousLesions"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="#FFF8F2"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Rotina ao sol"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/spinnerOutdoorWork"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="#FFF8F2"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp" />
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="Essas informações não geram diagnóstico médico. Elas ajudam apenas na triagem inicial e na orientação preventiva."
+                android:textColor="#68798F"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnSaveProfile"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="22dp"
-            android:backgroundTint="#8B4A2F"
-            android:text="Salvar e continuar"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+    </ScrollView>
 
-        <Button
-            android:id="@+id/btnSkipProfile"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E8C9B8"
-            android:text="Preencher depois"
-            android:textAllCaps="false"
-            android:textColor="#4A2A1A"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:gravity="center"
-            android:lineSpacingExtra="3dp"
-            android:text="Essas informações não geram diagnóstico médico. Elas ajudam apenas na triagem inicial e na orientação preventiva."
-            android:textColor="#6B4A3A"
-            android:textSize="13sp" />
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>

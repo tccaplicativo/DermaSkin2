@@ -10,6 +10,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
@@ -35,6 +39,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        val txtAppName = findViewById<TextView>(R.id.txtAppName)
+        val nomeApp = SpannableString("DermaPrev")
+
+        nomeApp.setSpan(
+            ForegroundColorSpan(Color.parseColor("#063B78")),
+            0,
+            5,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        nomeApp.setSpan(
+            ForegroundColorSpan(Color.parseColor("#08AFC0")),
+            5,
+            9,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        txtAppName.text = nomeApp
 
         auth = FirebaseAuth.getInstance()
 
@@ -107,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         txtMode.text = "Criar conta"
 
         edtName.visibility = View.VISIBLE
-        checkTerms.visibility = View.VISIBLE
+        checkTerms.visibility = View.GONE
 
         btnRegister.text = "Criar conta"
         btnLogin.text = "Já tenho conta"
@@ -201,14 +223,6 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
 
-            !checkTerms.isChecked -> {
-                Toast.makeText(
-                    this,
-                    "Você precisa aceitar o aviso de triagem médica.",
-                    Toast.LENGTH_LONG
-                ).show()
-                return false
-            }
         }
 
         return true
@@ -235,6 +249,12 @@ class MainActivity : AppCompatActivity() {
                     "Conta criada com sucesso!",
                     Toast.LENGTH_LONG
                 ).show()
+
+                getSharedPreferences("app_preferences", MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("lgpd_accepted", false)
+                    .putBoolean("health_profile_completed", false)
+                    .apply()
 
                 openAnaliseScreen()
             }

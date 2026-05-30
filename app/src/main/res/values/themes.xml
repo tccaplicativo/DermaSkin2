@@ -3,13 +3,14 @@
     <style name="Theme.DermaSkin2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:fontFamily">sans</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/cream</item>
-        <item name="android:navigationBarColor">@color/cream</item>
-        <item name="android:windowBackground">@color/cream</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">#F6FBFF</item>
+        <item name="android:navigationBarColor">#D8ECFA</item>
+        <item name="android:windowBackground">#F6FBFF</item>
 
-        <item name="colorPrimary">@color/brown</item>
-        <item name="colorPrimaryVariant">@color/brown_dark</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimary">#EAF7FF</item>
+        <item name="colorPrimaryVariant">#D8ECFA</item>
+        <item name="colorOnPrimary">#063B78</item>
     </style>
 
 </resources>
