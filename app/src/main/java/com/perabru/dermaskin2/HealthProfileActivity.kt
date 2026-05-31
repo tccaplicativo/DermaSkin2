@@ -2,9 +2,13 @@ package com.perabru.dermaskin2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -21,8 +25,14 @@ class HealthProfileActivity : AppCompatActivity() {
     private lateinit var spinnerFamilyHistory: Spinner
     private lateinit var spinnerPreviousLesions: Spinner
     private lateinit var spinnerOutdoorWork: Spinner
+
     private lateinit var btnSaveProfile: Button
     private lateinit var btnSkipProfile: Button
+
+    private lateinit var tvProgressHealth: TextView
+    private lateinit var viewProgressHealth: View
+    private lateinit var progressTrackHealth: FrameLayout
+    private lateinit var listaSpinners: List<Spinner>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +43,7 @@ class HealthProfileActivity : AppCompatActivity() {
         iniciarComponentes()
         configurarSpinners()
         configurarCliques()
+        configurarProgresso()
     }
 
     private fun iniciarComponentes() {
@@ -43,8 +54,23 @@ class HealthProfileActivity : AppCompatActivity() {
         spinnerFamilyHistory = findViewById(R.id.spinnerFamilyHistory)
         spinnerPreviousLesions = findViewById(R.id.spinnerPreviousLesions)
         spinnerOutdoorWork = findViewById(R.id.spinnerOutdoorWork)
+
         btnSaveProfile = findViewById(R.id.btnSaveProfile)
         btnSkipProfile = findViewById(R.id.btnSkipProfile)
+
+        tvProgressHealth = findViewById(R.id.tvProgressHealth)
+        viewProgressHealth = findViewById(R.id.viewProgressHealth)
+        progressTrackHealth = findViewById(R.id.progressTrackHealth)
+
+        listaSpinners = listOf(
+            spinnerAge,
+            spinnerSkinType,
+            spinnerSunExposure,
+            spinnerSunscreen,
+            spinnerFamilyHistory,
+            spinnerPreviousLesions,
+            spinnerOutdoorWork
+        )
     }
 
     private fun configurarSpinners() {
@@ -145,6 +171,48 @@ class HealthProfileActivity : AppCompatActivity() {
 
         btnSkipProfile.setOnClickListener {
             salvarComoConcluidoEContinuar()
+        }
+    }
+
+    private fun configurarProgresso() {
+        listaSpinners.forEach { spinner ->
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    atualizarProgresso()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+        }
+
+        progressTrackHealth.post {
+            atualizarProgresso()
+        }
+    }
+
+    private fun atualizarProgresso() {
+        val total = listaSpinners.size
+        val respondidas = listaSpinners.count { it.selectedItemPosition > 0 }
+
+        tvProgressHealth.text = "$respondidas/$total"
+
+        progressTrackHealth.post {
+            val larguraTrack = progressTrackHealth.width
+
+            val novaLargura = if (respondidas == 0) {
+                0
+            } else {
+                ((larguraTrack * respondidas.toFloat()) / total).toInt()
+            }
+
+            val params = viewProgressHealth.layoutParams
+            params.width = novaLargura
+            viewProgressHealth.layoutParams = params
         }
     }
 

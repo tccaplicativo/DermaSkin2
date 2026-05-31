@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_login_base">
 
+
     <!-- Pontinhos -->
     <ImageView
         android:layout_width="130dp"
@@ -120,22 +121,25 @@
                 android:orientation="horizontal">
 
                 <FrameLayout
+                    android:id="@+id/progressTrackHealth"
                     android:layout_width="0dp"
                     android:layout_height="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_progress_track_dermaprev">
 
                     <View
-                        android:layout_width="90dp"
+                        android:id="@+id/viewProgressHealth"
+                        android:layout_width="0dp"
                         android:layout_height="8dp"
                         android:background="@drawable/bg_progress_fill_dermaprev" />
                 </FrameLayout>
 
                 <TextView
+                    android:id="@+id/tvProgressHealth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
-                    android:text="1/4"
+                    android:text="0/7"
                     android:textColor="#063B78"
                     android:textSize="17sp"
                     android:textStyle="bold" />

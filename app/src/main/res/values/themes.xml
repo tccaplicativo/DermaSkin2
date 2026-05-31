@@ -1,16 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.DermaSkin2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
         <item name="android:fontFamily">sans</item>
+
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+
         <item name="android:statusBarColor">#F6FBFF</item>
-        <item name="android:navigationBarColor">#D8ECFA</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
         <item name="android:windowBackground">#F6FBFF</item>
 
-        <item name="colorPrimary">#EAF7FF</item>
-        <item name="colorPrimaryVariant">#D8ECFA</item>
-        <item name="colorOnPrimary">#063B78</item>
+        <item name="colorPrimary">#0A4ED8</item>
+        <item name="colorPrimaryVariant">#063B78</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
     </style>
 
 </resources>

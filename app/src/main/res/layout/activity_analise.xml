@@ -1,413 +1,575 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7EFE8"
-    android:fillViewport="true">
+    android:background="@drawable/bg_login_base">
 
-    <LinearLayout
+    <!-- detalhes de fundo -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.45"
+        android:src="@drawable/bg_dots_dermaprev"
+        android:contentDescription="@null" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="210dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="-18dp"
+        android:alpha="0.18"
+        android:src="@drawable/bg_hex_dermaprev"
+        android:contentDescription="@null" />
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="22dp"
-        tools:ignore="WebViewLayout">
+        android:layout_height="170dp"
+        android:layout_gravity="bottom"
+        android:scaleType="fitXY"
+        android:alpha="0.30"
+        android:src="@drawable/bg_wave_bottom_dermaprev"
+        android:contentDescription="@null" />
+
+    <!-- conteúdo principal -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingBottom="108dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="DermaSkin"
-                    android:textColor="#4A2A1A"
-                    android:textSize="34sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Triagem visual inteligente da pele"
-                    android:textColor="#6B4A3A"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="88dp"
-                android:layout_height="46dp"
-                android:backgroundTint="#E8C9B8"
-                android:text="Sair"
-                android:textAllCaps="false"
-                android:textColor="#4A2A1A"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingStart="24dp"
+            android:paddingTop="26dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="122dp">
 
-            <TextView
-                android:layout_width="match_parent"
+            <!-- topo DermaPrev -->
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nova análise"
-                android:textColor="#4A2A1A"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:lineSpacingExtra="3dp"
-                android:text="Tire uma foto nítida da lesão, responda se houve mudança recente e gere uma triagem visual com apoio de IA."
-                android:textColor="#6B4A3A"
-                android:textSize="14sp" />
-
-            <FrameLayout
-                android:layout_width="280dp"
-                android:layout_height="280dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
                 <ImageView
-                    android:id="@+id/imgPreview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_circle"
-                    android:padding="8dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_skin_placeholder" />
+                    android:id="@+id/imgLogoTopo"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/logo_dermaprev"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Logo DermaPrev" />
 
-                <View
-                    android:layout_width="3dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="#80FFFFFF" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_gravity="center"
-                    android:background="#80FFFFFF" />
-
-                <View
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/bg_focus_ring" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="12dp"
-                    android:background="#99000000"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="5dp"
-                    android:text="centralize aqui"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
-            </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Derma"
+                        android:textColor="#0A3D91"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/checkEvolution"
-                android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prev"
+                        android:textColor="#24C4D9"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- saudação -->
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:buttonTint="#8B4A2F"
-                android:text="A mancha mudou de cor, formato, coçou, sangrou ou cresceu recentemente?"
-                android:textColor="#3A2A24"
+                android:layout_marginTop="26dp"
+                android:text="Olá, usuário"
+                android:textColor="#0A3D91"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Vamos cuidar da sua pele hoje?"
+                android:textColor="#4F6480"
                 android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/btnCamera"
+            <!-- banner principal -->
+            <LinearLayout
+                android:id="@+id/cardNovaTriagem"
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
+                android:layout_height="190dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_home_banner_dermaprev"
+                android:elevation="7dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="22dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Iniciar nova triagem"
+                        android:textColor="@android:color/white"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:maxLines="2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="Capture uma lesão e receba orientação inicial com apoio da IA."
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="2dp"
+                        android:maxLines="3" />
+
+                    <TextView
+                        android:id="@+id/btnIniciarAgora"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_card_login"
+                        android:paddingStart="18dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="18dp"
+                        android:paddingBottom="10dp"
+                        android:text="Iniciar agora  ›"
+                        android:textColor="#0A4BCF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- câmera sem círculo e sem borda/foco -->
+                <FrameLayout
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:layout_marginStart="12dp">
+
+                    <ImageView
+                        android:layout_width="78dp"
+                        android:layout_height="78dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera_home"
+                        app:tint="#FFFFFF"
+                        android:contentDescription="Nova triagem" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- linha 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="#8B4A2F"
-                android:text="Tirar foto da mancha"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnAnalyze"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="#4A2A1A"
-                android:enabled="false"
-                android:text="Analisar com IA"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                <!-- Acompanhar lesão -->
+                <LinearLayout
+                    android:id="@+id/cardAcompanharLesao"
+                    android:layout_width="0dp"
+                    android:layout_height="215dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_login"
+                    android:elevation="5dp"
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
-            <Button
-                android:id="@+id/btnExportPdf"
+                    <FrameLayout
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:background="@drawable/bg_circle">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_monitor_lesao"
+                            app:tint="#0A4BCF"
+                            android:contentDescription="@null" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Acompanhar lesão"
+                        android:textColor="#0A3D91"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:minLines="2"
+                        android:maxLines="2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="Veja a evolução das suas lesões."
+                        android:textColor="#62748A"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="2dp"
+                        android:maxLines="4" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_chevron_forward_dermaprev"
+                        app:tint="#0A4BCF"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="14dp"
+                    android:layout_height="1dp" />
+
+                <!-- Orientações -->
+                <LinearLayout
+                    android:id="@+id/cardOrientacoes"
+                    android:layout_width="0dp"
+                    android:layout_height="215dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_login"
+                    android:elevation="5dp"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <FrameLayout
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:background="@drawable/bg_circle">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_orientacoes_home"
+                            app:tint="#0A4BCF"
+                            android:contentDescription="@null" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Orientações"
+                        android:textColor="#0A3D91"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:minLines="2"
+                        android:maxLines="2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="Cuidados e prevenção para sua pele."
+                        android:textColor="#62748A"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="2dp"
+                        android:maxLines="4" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_chevron_forward_dermaprev"
+                        app:tint="#0A4BCF"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- linha 2 -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="#E8C9B8"
-                android:enabled="false"
-                android:text="Exportar relatório"
-                android:textAllCaps="false"
-                android:textColor="#4A2A1A"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <!-- Relatório -->
+                <LinearLayout
+                    android:id="@+id/cardRelatorio"
+                    android:layout_width="0dp"
+                    android:layout_height="215dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_login"
+                    android:elevation="5dp"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <FrameLayout
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:background="@drawable/bg_circle">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_relatorio_home"
+                            app:tint="#0A4BCF"
+                            android:contentDescription="@null" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Relatório"
+                        android:textColor="#0A3D91"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:minLines="2"
+                        android:maxLines="2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="Gere informações para atendimento."
+                        android:textColor="#62748A"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="2dp"
+                        android:maxLines="4" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_chevron_forward_dermaprev"
+                        app:tint="#0A4BCF"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="14dp"
+                    android:layout_height="1dp" />
+
+                <!-- Clínicas parceiras -->
+                <LinearLayout
+                    android:id="@+id/cardClinicas"
+                    android:layout_width="0dp"
+                    android:layout_height="215dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_login"
+                    android:elevation="5dp"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <FrameLayout
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:background="@drawable/bg_circle">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_clinicas_home"
+                            app:tint="#0A4BCF"
+                            android:contentDescription="@null" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Clínicas parceiras"
+                        android:textColor="#0A3D91"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:minLines="2"
+                        android:maxLines="2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="Encontre apoio e unidades de saúde."
+                        android:textColor="#62748A"
+                        android:textSize="13sp"
+                        android:lineSpacingExtra="2dp"
+                        android:maxLines="4" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_chevron_forward_dermaprev"
+                        app:tint="#0A4BCF"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Ações rápidas"
-            android:textColor="#4A2A1A"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+    <!-- bottom nav -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_bottom_nav_dermaprev"
+        android:elevation="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="10dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnHistory"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginRight="6dp"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_home_nav"
+                app:tint="#0A4BCF"
+                android:contentDescription="Início" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Início"
+                android:textColor="#0A4BCF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navHistorico"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_history_nav"
+                app:tint="#74829A"
+                android:contentDescription="Histórico" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Histórico"
-                android:textAllCaps="false"
-                android:textColor="#4A2A1A"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnPrevention"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginLeft="6dp"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                android:text="Prevenção"
-                android:textAllCaps="false"
-                android:textColor="#4A2A1A"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnReferral"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#FFFFFF"
-            android:text="Encaminhamento / clínicas parceiras"
-            android:textAllCaps="false"
-            android:textColor="#4A2A1A"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/riskCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:padding="22dp"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Classificação de prioridade"
-                android:textColor="#8B4A2F"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtRiskTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Risco baixo"
-                android:textColor="#4A2A1A"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtPercentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="0%"
-                android:textColor="#5CB85C"
-                android:textSize="48sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtRiskExplanation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:lineSpacingExtra="4dp"
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
-
+                android:textColor="#74829A"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/sizeCard"
-            android:layout_width="match_parent"
+            android:id="@+id/navOrientacoes"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:padding="22dp"
-            android:visibility="gone">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_orientacoes_home"
+                app:tint="#74829A"
+                android:contentDescription="Orientações" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tamanho aproximado da mancha"
-                android:textColor="#4A2A1A"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtSizeReport"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:lineSpacingExtra="4dp"
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
-
+                android:layout_marginTop="4dp"
+                android:text="Orientações"
+                android:textColor="#74829A"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/resultCard"
-            android:layout_width="match_parent"
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:padding="22dp"
-            android:visibility="gone">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_profile_nav"
+                app:tint="#74829A"
+                android:contentDescription="Perfil" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detalhes da análise"
-                android:textColor="#4A2A1A"
-                android:textSize="23sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:lineSpacingExtra="4dp"
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtABCDE"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:lineSpacingExtra="4dp"
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtClasses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:background="#FFF8F2"
-                android:padding="14dp"
-                android:textColor="#3A2A24"
-                android:textSize="14sp" />
-
+                android:layout_marginTop="4dp"
+                android:text="Perfil"
+                android:textColor="#74829A"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/navMais"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:background="#FFF8F2"
-            android:elevation="2dp"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_more_nav"
+                app:tint="#74829A"
+                android:contentDescription="Mais" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aviso importante"
-                android:textColor="#4A2A1A"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:lineSpacingExtra="3dp"
-                android:text="Este aplicativo não substitui consulta médica. A análise é apenas uma triagem visual com apoio de inteligência artificial."
-                android:textColor="#6B4A3A"
-                android:textSize="13sp" />
-
+                android:layout_marginTop="4dp"
+                android:text="Mais"
+                android:textColor="#74829A"
+                android:textSize="12sp" />
         </LinearLayout>
-
-        <WebView
-            android:id="@+id/webViewIA"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:visibility="invisible" />
-
     </LinearLayout>
 
-</ScrollView>
+</FrameLayout>
