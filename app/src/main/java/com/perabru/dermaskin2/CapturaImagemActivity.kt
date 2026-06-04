@@ -65,7 +65,7 @@ class CapturaImagemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_captura_imagem)
 
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
 
         iniciarComponentes()
         configurarTela()
@@ -83,7 +83,7 @@ class CapturaImagemActivity : AppCompatActivity() {
     }
 
     private fun configurarTela() {
-        txtAreaCaptura.text = "Área selecionada: $areaSelecionada"
+        txtAreaCaptura.text = "Área da lesão: $areaSelecionada"
     }
 
     private fun configurarEstadoInicial() {

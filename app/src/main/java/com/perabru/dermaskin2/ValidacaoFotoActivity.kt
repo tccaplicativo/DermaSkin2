@@ -32,7 +32,7 @@ class ValidacaoFotoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_validacao_foto)
 
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
         imagePath = intent.getStringExtra("imagePath") ?: ""
 
         iniciarComponentes()
@@ -55,7 +55,7 @@ class ValidacaoFotoActivity : AppCompatActivity() {
     }
 
     private fun configurarTela() {
-        txtAreaValidacao.text = "Área selecionada: $areaSelecionada"
+        txtAreaValidacao.text = "Área da lesão: $areaSelecionada"
 
         if (imagePath.isBlank()) {
             Toast.makeText(this, "Imagem não encontrada.", Toast.LENGTH_LONG).show()

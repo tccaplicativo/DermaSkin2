@@ -50,7 +50,7 @@ class ResultadoTriagemActivity : AppCompatActivity() {
     }
 
     private fun recuperarDados() {
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
         imagePath = intent.getStringExtra("imagePath") ?: ""
 
         tempoLesao = intent.getStringExtra("tempoLesao") ?: "Não informado"
@@ -82,7 +82,7 @@ class ResultadoTriagemActivity : AppCompatActivity() {
     }
 
     private fun configurarTela() {
-        txtAreaResultado.text = "Área selecionada: $areaSelecionada"
+        txtAreaResultado.text = "Área da lesão: $areaSelecionada"
 
         txtRiscoTitulo.text = riscoTitulo
         txtRiscoPercentual.text = riscoPercentual
@@ -130,7 +130,7 @@ class ResultadoTriagemActivity : AppCompatActivity() {
             }
 
             else -> {
-                txtRiscoPercentual.setTextColor(android.graphics.Color.parseColor("#4A2A1A"))
+                txtRiscoPercentual.setTextColor(android.graphics.Color.parseColor("#063B78"))
             }
         }
     }

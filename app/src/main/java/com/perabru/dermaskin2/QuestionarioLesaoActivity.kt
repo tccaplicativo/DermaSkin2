@@ -2,10 +2,14 @@ package com.perabru.dermaskin2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.FrameLayout
 import android.widget.Spinner
-import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -24,6 +28,11 @@ class QuestionarioLesaoActivity : AppCompatActivity() {
     private lateinit var btnContinuarQuestionario: Button
     private lateinit var btnVoltarQuestionario: Button
 
+    private lateinit var tvProgressQuestionario: TextView
+    private lateinit var viewProgressQuestionario: View
+    private lateinit var progressTrackQuestionario: FrameLayout
+    private lateinit var listaSpinners: List<Spinner>
+
     private var areaSelecionada: String = ""
     private var imagePath: String = ""
 
@@ -31,12 +40,13 @@ class QuestionarioLesaoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questionario_lesao)
 
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
         imagePath = intent.getStringExtra("imagePath") ?: ""
 
         iniciarComponentes()
         configurarSpinners()
         configurarCliques()
+        configurarProgresso()
     }
 
     private fun iniciarComponentes() {
@@ -52,6 +62,20 @@ class QuestionarioLesaoActivity : AppCompatActivity() {
 
         btnContinuarQuestionario = findViewById(R.id.btnContinuarQuestionario)
         btnVoltarQuestionario = findViewById(R.id.btnVoltarQuestionario)
+
+        tvProgressQuestionario = findViewById(R.id.tvProgressQuestionario)
+        viewProgressQuestionario = findViewById(R.id.viewProgressQuestionario)
+        progressTrackQuestionario = findViewById(R.id.progressTrackQuestionario)
+
+        listaSpinners = listOf(
+            spinnerTempoLesao,
+            spinnerMudancaTamanho,
+            spinnerMudancaCor,
+            spinnerCoceira,
+            spinnerSangramento,
+            spinnerDor,
+            spinnerFormato
+        )
     }
 
     private fun configurarSpinners() {
@@ -146,6 +170,48 @@ class QuestionarioLesaoActivity : AppCompatActivity() {
 
         btnVoltarQuestionario.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun configurarProgresso() {
+        listaSpinners.forEach { spinner ->
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    atualizarProgresso()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+        }
+
+        progressTrackQuestionario.post {
+            atualizarProgresso()
+        }
+    }
+
+    private fun atualizarProgresso() {
+        val total = listaSpinners.size
+        val respondidas = listaSpinners.count { it.selectedItemPosition > 0 }
+
+        tvProgressQuestionario.text = "$respondidas/$total"
+
+        progressTrackQuestionario.post {
+            val larguraTrack = progressTrackQuestionario.width
+
+            val novaLargura = if (respondidas == 0) {
+                0
+            } else {
+                ((larguraTrack * respondidas.toFloat()) / total).toInt()
+            }
+
+            val params = viewProgressQuestionario.layoutParams
+            params.width = novaLargura
+            viewProgressQuestionario.layoutParams = params
         }
     }
 

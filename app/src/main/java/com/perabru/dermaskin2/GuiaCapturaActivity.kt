@@ -12,13 +12,13 @@ class GuiaCapturaActivity : AppCompatActivity() {
     private lateinit var btnContinuarCaptura: Button
     private lateinit var btnVoltarGuia: Button
 
-    private var areaSelecionada: String = ""
+    private var areaSelecionada: String = "Não informada"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guia_captura)
 
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
 
         iniciarComponentes()
         configurarTela()
@@ -32,7 +32,7 @@ class GuiaCapturaActivity : AppCompatActivity() {
     }
 
     private fun configurarTela() {
-        txtAreaSelecionadaGuia.text = "Área selecionada: $areaSelecionada"
+        txtAreaSelecionadaGuia.text = "Área da lesão: $areaSelecionada"
     }
 
     private fun configurarCliques() {

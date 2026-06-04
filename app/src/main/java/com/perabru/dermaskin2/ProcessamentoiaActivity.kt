@@ -36,7 +36,7 @@ class ProcessamentoiaActivity : AppCompatActivity() {
     }
 
     private fun recuperarDados() {
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
         imagePath = intent.getStringExtra("imagePath") ?: ""
 
         tempoLesao = intent.getStringExtra("tempoLesao") ?: "Não informado"
@@ -55,7 +55,7 @@ class ProcessamentoiaActivity : AppCompatActivity() {
     }
 
     private fun configurarTela() {
-        txtAreaProcessamento.text = "Área selecionada: $areaSelecionada"
+        txtAreaProcessamento.text = "Área da lesão: $areaSelecionada"
         txtStatusProcessamento.text = "Preparando triagem provisória..."
     }
 

@@ -41,7 +41,7 @@ class MetodoAbcdeActivity : AppCompatActivity() {
     }
 
     private fun recuperarDados() {
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
         imagePath = intent.getStringExtra("imagePath") ?: ""
 
         tempoLesao = intent.getStringExtra("tempoLesao") ?: "Não informado"
@@ -67,8 +67,7 @@ class MetodoAbcdeActivity : AppCompatActivity() {
     }
 
     private fun configurarTela() {
-        txtAreaAbcde.text = "Área selecionada: $areaSelecionada"
-
+        txtAreaAbcde.text = "Área da lesão: $areaSelecionada"
         txtResumoAbcde.text =
             "Resultado da triagem: $riscoTitulo\n" +
                     "Percentual estimado: $riscoPercentual\n\n" +

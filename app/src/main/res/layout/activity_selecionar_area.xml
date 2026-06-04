@@ -1,450 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootSelecionarArea"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7EFE8"
-    android:fillViewport="true">
+    android:background="@drawable/bg_login_base">
+
+    <!-- Fundo: pontinhos -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.35"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_dots_dermaprev" />
+
+    <!-- Fundo: hexágonos -->
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="210dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="-26dp"
+        android:alpha="0.16"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_hex_dermaprev" />
+
+    <!-- Fundo: ondas -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="bottom"
+        android:alpha="0.28"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:paddingStart="24dp"
+        android:paddingTop="26dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DermaSkin"
-            android:textColor="#4A2A1A"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Selecione a área da pele que será fotografada"
-            android:textColor="#6B4A3A"
-            android:textSize="15sp" />
-
+        <!-- Topo -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:padding="22dp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnVoltarArea"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="@drawable/bg_card_login"
+                android:backgroundTint="@null"
+                android:text="‹"
+                android:textAllCaps="false"
+                android:textColor="#0A4BCF"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Onde está a lesão?"
-                android:textColor="#4A2A1A"
-                android:textSize="24sp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Selecionar área"
+                android:textColor="#0A3D91"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Escolha a região do corpo onde está a mancha ou lesão. Essa informação será usada no relatório da triagem."
-                android:textColor="#6B4A3A"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/txtAreaSelecionada"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:background="#FFF8F2"
-                android:padding="14dp"
-                android:text="Nenhuma área selecionada"
-                android:textColor="#4A2A1A"
-                android:textSize="15sp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="@drawable/bg_card_login"
+                android:gravity="center"
+                android:text="1/4"
+                android:textColor="#0A4BCF"
+                android:textSize="13sp"
                 android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/btnRosto"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🙂"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Rosto"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btnPescoco"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="👤"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Pescoço"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/btnBraco"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="💪"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Braço"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btnMao"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="✋"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Mão"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/btnCostas"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🧍"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Costas"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btnPeito"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🫀"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Peito"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/btnBarriga"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="⬤"
-                        android:textColor="#8B4A2F"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Barriga"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btnPerna"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🦵"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Perna"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/btnPe"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🦶"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Pé"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/btnOutraArea"
-                    android:layout_width="0dp"
-                    android:layout_height="92dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_weight="1"
-                    android:background="#FFF8F2"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+"
-                        android:textColor="#8B4A2F"
-                        android:textSize="32sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Outra"
-                        android:textColor="#4A2A1A"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="Toque na região do corpo onde está a lesão"
+            android:textColor="#4F6480"
+            android:textSize="14sp" />
+
+        <!-- Área da silhueta com pontos clicáveis -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgBodySilhouette"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:contentDescription="Silhueta do corpo humano"
+                android:scaleType="fitCenter"
+                android:src="@drawable/body_silhouette_dermaprev" />
+
+            <!-- Rosto -->
+            <LinearLayout
+                android:id="@+id/btnRosto"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="44dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <!-- Pescoço -->
+            <LinearLayout
+                android:id="@+id/btnPescoco"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="102dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <!-- Peito -->
+            <LinearLayout
+                android:id="@+id/btnPeito"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="158dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <!-- Barriga -->
+            <LinearLayout
+                android:id="@+id/btnBarriga"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="228dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+            <!-- Braço -->
+            <LinearLayout
+                android:id="@+id/btnBraco"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="205dp"
+                android:orientation="horizontal"
+                android:translationX="-86dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true">
+            </LinearLayout>
+
+            <!-- Mão -->
+            <LinearLayout
+                android:id="@+id/btnMao"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="322dp"
+                android:orientation="horizontal"
+                android:translationX="-108dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true">
+            </LinearLayout>
+
+            <!-- Costas / tronco lateral -->
+            <LinearLayout
+                android:id="@+id/btnCostas"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="172dp"
+                android:orientation="horizontal"
+                android:translationX="52dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true">
+            </LinearLayout>
+
+            <!-- Perna -->
+            <LinearLayout
+                android:id="@+id/btnPerna"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="402dp"
+                android:orientation="horizontal"
+                android:translationX="42dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true">
+            </LinearLayout>
+
+            <!-- Pé -->
+            <LinearLayout
+                android:id="@+id/btnPe"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="34dp"
+                android:orientation="horizontal"
+                android:translationX="46dp"
+                android:background="@drawable/bg_area_point_dermaprev"
+                android:clickable="true"
+                android:focusable="true">
+            </LinearLayout>
+
+            <!-- Outra área -->
+        <LinearLayout
+            android:id="@+id/btnOutraArea"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/bg_card_login"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textColor="#0A4BCF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/txtAreaSelecionada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Nenhuma área selecionada"
+            android:textColor="#4F6480"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnContinuarArea"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="22dp"
-            android:backgroundTint="#8B4A2F"
-            android:text="Continuar para guia de captura"
+            android:layout_height="54dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_button_primary_dermaprev"
+            android:backgroundTint="@null"
+            android:text="Continuar"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnVoltarArea"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E8C9B8"
-            android:text="Voltar"
-            android:textAllCaps="false"
-            android:textColor="#4A2A1A"
             android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:gravity="center"
-            android:lineSpacingExtra="3dp"
-            android:text="A região selecionada será incluída no relatório e ajudará o profissional de saúde a entender melhor a localização da lesão."
-            android:textColor="#6B4A3A"
-            android:textSize="13sp" />
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
-</ScrollView>
+</FrameLayout>

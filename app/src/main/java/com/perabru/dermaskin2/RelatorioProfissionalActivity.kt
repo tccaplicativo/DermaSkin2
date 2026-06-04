@@ -82,7 +82,7 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
     }
 
     private fun recuperarDados() {
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Área não informada"
+        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
         imagePath = intent.getStringExtra("imagePath") ?: ""
 
         tempoLesao = intent.getStringExtra("tempoLesao") ?: "Não informado"
@@ -110,7 +110,7 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
     }
 
     private fun configurarTela() {
-        txtAreaRelatorio.text = "Área selecionada: $areaSelecionada"
+        txtAreaRelatorio.text = "Área da lesão: $areaSelecionada"
 
         txtResumoRelatorio.text =
             "Classificação: $riscoTitulo\n" +
@@ -158,7 +158,7 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
     private fun exportarPdf() {
         try {
             pendingPdfBytes = gerarPdfBytes()
-            val fileName = "relatorio_dermaskin_${System.currentTimeMillis()}.pdf"
+            val fileName = "relatorio_dermaprev_${System.currentTimeMillis()}.pdf"
             createPdfLauncher.launch(fileName)
         } catch (e: Exception) {
             Toast.makeText(this, "Erro ao gerar PDF: ${e.message}", Toast.LENGTH_LONG).show()
@@ -187,49 +187,74 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
 
     private fun desenharPdf(canvas: Canvas) {
         val pageWidth = 595f
+        val pageHeight = 842f
+        val margin = 34f
+        val right = pageWidth - margin
 
-        val titlePaint = Paint().apply {
-            color = Color.parseColor("#4A2A1A")
-            textSize = 30f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
+        canvas.drawColor(Color.parseColor("#F6FBFF"))
 
-        val subtitlePaint = Paint().apply {
-            color = Color.parseColor("#8B4A2F")
-            textSize = 15f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
-
-        val normalPaint = Paint().apply {
-            color = Color.parseColor("#2E1B13")
-            textSize = 11f
-            isAntiAlias = true
-        }
-
-        val smallPaint = Paint().apply {
-            color = Color.DKGRAY
-            textSize = 9f
-            isAntiAlias = true
-        }
-
-        val whitePaint = Paint().apply {
+        val cardPaint = Paint().apply {
             color = Color.WHITE
             style = Paint.Style.FILL
             isAntiAlias = true
         }
 
-        val creamPaint = Paint().apply {
-            color = Color.parseColor("#FFF8F2")
+        val softBluePaint = Paint().apply {
+            color = Color.parseColor("#F2FAFF")
             style = Paint.Style.FILL
             isAntiAlias = true
         }
 
         val borderPaint = Paint().apply {
-            color = Color.parseColor("#E0BFAE")
+            color = Color.parseColor("#DDECF7")
             style = Paint.Style.STROKE
-            strokeWidth = 2f
+            strokeWidth = 1.5f
+            isAntiAlias = true
+        }
+
+        val dermaPaint = Paint().apply {
+            color = Color.parseColor("#063B78")
+            textSize = 30f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            isAntiAlias = true
+        }
+
+        val prevPaint = Paint().apply {
+            color = Color.parseColor("#1DB9D2")
+            textSize = 30f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            isAntiAlias = true
+        }
+
+        val sectionPaint = Paint().apply {
+            color = Color.parseColor("#063B78")
+            textSize = 15f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            isAntiAlias = true
+        }
+
+        val titlePaint = Paint().apply {
+            color = Color.parseColor("#063B78")
+            textSize = 27f
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            isAntiAlias = true
+        }
+
+        val normalPaint = Paint().apply {
+            color = Color.parseColor("#173B70")
+            textSize = 10.5f
+            isAntiAlias = true
+        }
+
+        val smallPaint = Paint().apply {
+            color = Color.parseColor("#68798F")
+            textSize = 8.5f
+            isAntiAlias = true
+        }
+
+        val mutedPaint = Paint().apply {
+            color = Color.parseColor("#50627A")
+            textSize = 9.5f
             isAntiAlias = true
         }
 
@@ -237,36 +262,77 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
             color = when {
                 riscoTitulo.contains("alto", true) -> Color.parseColor("#D9534F")
                 riscoTitulo.contains("médio", true) || riscoTitulo.contains("medio", true) -> Color.parseColor("#E6A23C")
-                riscoTitulo.contains("baixo", true) -> Color.parseColor("#5CB85C")
-                else -> Color.parseColor("#4A2A1A")
+                riscoTitulo.contains("baixo", true) -> Color.parseColor("#28A745")
+                else -> Color.parseColor("#063B78")
             }
-            textSize = 34f
+            textSize = 36f
             typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
             isAntiAlias = true
         }
 
-        canvas.drawColor(Color.parseColor("#F7EFE8"))
+        val iconPaint = Paint().apply {
+            color = Color.parseColor("#0A4BCF")
+            textSize = 24f
+            textAlign = Paint.Align.CENTER
+            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+            isAntiAlias = true
+        }
 
-        canvas.drawRoundRect(30f, 30f, pageWidth - 30f, 115f, 24f, 24f, whitePaint)
-        canvas.drawText("DermaSkin", 50f, 66f, titlePaint)
-        canvas.drawText("Relatório para profissional de saúde", 50f, 92f, subtitlePaint)
+        // HEADER
+        canvas.drawRoundRect(margin, 28f, right, 112f, 24f, 24f, cardPaint)
+        canvas.drawRoundRect(margin, 28f, right, 112f, 24f, 24f, borderPaint)
+
+        val logo = BitmapFactory.decodeResource(resources, R.drawable.logo_dermaprev)
+        val logoSize = 36
+        val logoScaled = Bitmap.createScaledBitmap(logo, logoSize, logoSize, true)
+
+        val dermaText = "Derma"
+        val prevText = "Prev"
+        val dermaWidth = dermaPaint.measureText(dermaText)
+        val prevWidth = prevPaint.measureText(prevText)
+        val brandWidth = logoSize + 12f + dermaWidth + prevWidth
+
+        val brandStartX = (pageWidth - brandWidth) / 2f
+        val logoY = 47f
+        val textBaseY = 75f
+
+        canvas.drawBitmap(logoScaled, brandStartX, logoY, null)
+        canvas.drawText(dermaText, brandStartX + logoSize + 12f, textBaseY, dermaPaint)
+        canvas.drawText(prevText, brandStartX + logoSize + 12f + dermaWidth, textBaseY, prevPaint)
+
+        val subtitle = "Relatório para profissional de saúde"
+        val subtitleWidth = mutedPaint.measureText(subtitle)
+        canvas.drawText(subtitle, (pageWidth - subtitleWidth) / 2f, 94f, mutedPaint)
 
         val date = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR")).format(Date())
-        canvas.drawText("Data: $date", 410f, 66f, smallPaint)
+        val dateText = "Data: $date"
+        val dateWidth = smallPaint.measureText(dateText)
+        canvas.drawText(dateText, right - dateWidth - 12f, 55f, smallPaint)
 
-        canvas.drawRoundRect(30f, 135f, pageWidth - 30f, 260f, 24f, 24f, creamPaint)
-        canvas.drawRoundRect(30f, 135f, pageWidth - 30f, 260f, 24f, 24f, borderPaint)
+        // CARD RESULTADO
+        canvas.drawRoundRect(margin, 132f, right, 252f, 24f, 24f, cardPaint)
+        canvas.drawRoundRect(margin, 132f, right, 252f, 24f, 24f, borderPaint)
 
-        canvas.drawText("Resultado da triagem", 50f, 165f, subtitlePaint)
-        canvas.drawText(riscoTitulo, 50f, 205f, titlePaint)
-        canvas.drawText(riscoPercentual, 410f, 205f, riskPaint)
+        canvas.drawText("Resultado da triagem", 54f, 160f, sectionPaint)
+        canvas.drawText(riscoTitulo, 54f, 197f, titlePaint)
 
-        drawMultilineText(canvas, riscoDescricao, 50f, 232f, normalPaint, 88)
+        val riskWidth = riskPaint.measureText(riscoPercentual)
+        canvas.drawText(riscoPercentual, right - riskWidth - 36f, 197f, riskPaint)
 
-        canvas.drawRoundRect(30f, 280f, pageWidth - 30f, 445f, 24f, 24f, whitePaint)
-        canvas.drawRoundRect(30f, 280f, pageWidth - 30f, 445f, 24f, 24f, borderPaint)
+        drawMultilineText(
+            canvas,
+            riscoDescricao,
+            54f,
+            222f,
+            normalPaint,
+            82
+        )
 
-        canvas.drawText("Dados informados pelo usuário", 50f, 310f, subtitlePaint)
+        // CARD DADOS + IMAGEM
+        canvas.drawRoundRect(margin, 272f, right, 448f, 24f, 24f, cardPaint)
+        canvas.drawRoundRect(margin, 272f, right, 448f, 24f, 24f, borderPaint)
+
+        canvas.drawText("Dados informados pelo usuário", 54f, 302f, sectionPaint)
 
         val dadosClinicos =
             "Área da lesão: $areaSelecionada\n" +
@@ -278,39 +344,48 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
                     "Dor: $dor\n" +
                     "Formato irregular: $formatoIrregular"
 
-        drawMultilineText(canvas, dadosClinicos, 50f, 338f, normalPaint, 80)
+        drawMultilineText(canvas, dadosClinicos, 54f, 330f, normalPaint, 56)
 
         val file = File(imagePath)
         if (file.exists()) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
-            val image = Bitmap.createScaledBitmap(bitmap, 120, 120, true)
-            canvas.drawBitmap(image, 420f, 315f, null)
-            canvas.drawText("Imagem analisada", 420f, 445f, smallPaint)
+            val image = Bitmap.createScaledBitmap(bitmap, 112, 112, true)
+
+            canvas.drawRoundRect(420f, 310f, 540f, 430f, 18f, 18f, softBluePaint)
+            canvas.drawRoundRect(420f, 310f, 540f, 430f, 18f, 18f, borderPaint)
+            canvas.drawBitmap(image, 424f, 314f, null)
+            canvas.drawText("Imagem analisada", 426f, 442f, smallPaint)
         }
 
-        canvas.drawRoundRect(30f, 465f, pageWidth - 30f, 630f, 24f, 24f, creamPaint)
-        canvas.drawRoundRect(30f, 465f, pageWidth - 30f, 630f, 24f, 24f, borderPaint)
+        // CARD OBSERVAÇÕES
+        canvas.drawRoundRect(margin, 468f, right, 616f, 24f, 24f, cardPaint)
+        canvas.drawRoundRect(margin, 468f, right, 616f, 24f, 24f, borderPaint)
 
-        canvas.drawText("Observações para avaliação profissional", 50f, 495f, subtitlePaint)
+        canvas.drawText("Observações para avaliação profissional", 54f, 498f, sectionPaint)
 
         val observacoes =
             "Este relatório organiza a imagem, a localização da lesão, as respostas clínicas e a classificação inicial gerada pelo aplicativo. " +
                     "A triagem não possui valor diagnóstico definitivo. A decisão clínica deve ser feita por profissional habilitado, considerando exame físico, dermatoscopia e, se necessário, outros procedimentos."
 
-        drawMultilineText(canvas, observacoes, 50f, 522f, normalPaint, 88)
+        drawMultilineText(canvas, observacoes, 54f, 526f, normalPaint, 86)
 
-        canvas.drawRoundRect(30f, 650f, pageWidth - 30f, 760f, 24f, 24f, whitePaint)
-        canvas.drawRoundRect(30f, 650f, pageWidth - 30f, 760f, 24f, 24f, borderPaint)
+        // CARD AVISO
+        canvas.drawRoundRect(margin, 636f, right, 742f, 24f, 24f, cardPaint)
+        canvas.drawRoundRect(margin, 636f, right, 742f, 24f, 24f, borderPaint)
 
-        canvas.drawText("Aviso importante", 50f, 680f, subtitlePaint)
+        canvas.drawCircle(64f, 674f, 18f, softBluePaint)
+        canvas.drawText("!", 64f, 683f, iconPaint)
+
+        canvas.drawText("Aviso importante", 92f, 668f, sectionPaint)
 
         val aviso =
-            "O DermaSkin realiza apenas uma triagem visual com apoio de tecnologia. " +
+            "O DermaPrev realiza apenas uma triagem visual com apoio de tecnologia. " +
                     "Este documento não substitui consulta médica, não confirma diagnóstico e não descarta doenças de pele."
 
-        drawMultilineText(canvas, aviso, 50f, 707f, normalPaint, 88)
+        drawMultilineText(canvas, aviso, 92f, 694f, normalPaint, 74)
 
-        canvas.drawText("Gerado pelo aplicativo DermaSkin", 40f, 825f, smallPaint)
+        // RODAPÉ
+        canvas.drawText("Gerado pelo aplicativo DermaPrev", 40f, pageHeight - 28f, smallPaint)
     }
 
     private fun drawMultilineText(

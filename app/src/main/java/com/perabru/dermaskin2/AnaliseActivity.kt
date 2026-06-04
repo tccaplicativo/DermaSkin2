@@ -107,7 +107,9 @@ class AnaliseActivity : AppCompatActivity() {
     }
 
     private fun abrirNovaTriagem() {
-        startActivity(Intent(this, SelecionarAreaActivity::class.java))
+        val intent = Intent(this, GuiaCapturaActivity::class.java)
+        intent.putExtra("areaSelecionada", "Não informada")
+        startActivity(intent)
     }
 
     private fun voltarParaLogin() {
