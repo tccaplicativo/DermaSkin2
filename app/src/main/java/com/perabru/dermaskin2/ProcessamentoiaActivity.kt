@@ -56,7 +56,7 @@ class ProcessamentoiaActivity : AppCompatActivity() {
 
     private fun configurarTela() {
         txtAreaProcessamento.text = "Área da lesão: $areaSelecionada"
-        txtStatusProcessamento.text = "Preparando triagem provisória..."
+        txtStatusProcessamento.text = "Preparando triagem..."
     }
 
     private fun iniciarProcessamentoProvisorio() {
@@ -69,7 +69,7 @@ class ProcessamentoiaActivity : AppCompatActivity() {
         }, 2200)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            txtStatusProcessamento.text = "Gerando resultado provisório..."
+            txtStatusProcessamento.text = "Gerando resultado..."
         }, 3400)
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -89,21 +89,21 @@ class ProcessamentoiaActivity : AppCompatActivity() {
                 riscoTitulo = "Risco alto"
                 riscoPercentual = "78%"
                 riscoDescricao =
-                    "A triagem provisória identificou vários sinais clínicos de atenção, como mudança na lesão, sintomas associados ou formato irregular. Este resultado não é um diagnóstico, mas indica que é importante procurar avaliação dermatológica o quanto antes."
+                    "A triagem identificou vários sinais clínicos de atenção, como mudança na lesão, sintomas associados ou formato irregular. Este resultado não é um diagnóstico, mas indica que é importante procurar avaliação dermatológica o quanto antes."
             }
 
             pontuacao >= 3 -> {
                 riscoTitulo = "Risco médio"
                 riscoPercentual = "52%"
                 riscoDescricao =
-                    "A triagem provisória encontrou alguns sinais que merecem acompanhamento, como alterações relatadas ou sintomas leves. Este resultado não confirma doença, mas recomenda atenção e avaliação profissional se houver persistência ou piora."
+                    "A triagem encontrou alguns sinais que merecem acompanhamento, como alterações relatadas ou sintomas leves. Este resultado não confirma doença, mas recomenda atenção e avaliação profissional se houver persistência ou piora."
             }
 
             else -> {
                 riscoTitulo = "Risco baixo"
                 riscoPercentual = "24%"
                 riscoDescricao =
-                    "A triagem provisória encontrou poucos sinais de alerta nas respostas informadas. Mesmo assim, continue observando a lesão e procure um dermatologista se ela mudar de cor, crescer, coçar, sangrar ou não cicatrizar."
+                    "A triagem encontrou poucos sinais de alerta nas respostas informadas. Mesmo assim, continue observando a lesão e procure um dermatologista se ela mudar de cor, crescer, coçar, sangrar ou não cicatrizar."
             }
         }
 
