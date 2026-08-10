@@ -176,12 +176,21 @@ class AnaliseActivity : AppCompatActivity() {
             .inflate(R.layout.bottom_sheet_mais, null)
 
         val btnSobreDermaPrev =
-            view.findViewById<LinearLayout>(R.id.btnSobreDermaPrev)
-
+            view.findViewById<LinearLayout>(
+                R.id.btnSobreDermaPrev
+            )
 
         val btnComoUsarDermaPrev =
-            view.findViewById<LinearLayout>(R.id.btnComoUsarDermaPrev)
+            view.findViewById<LinearLayout>(
+                R.id.btnComoUsarDermaPrev
+            )
 
+        val btnContatoDermaPrev =
+            view.findViewById<LinearLayout>(
+                R.id.btnContatoDermaPrev
+            )
+
+        // SOBRE O DERMAPREV
         btnSobreDermaPrev.setOnClickListener {
 
             dialog.dismiss()
@@ -198,7 +207,7 @@ class AnaliseActivity : AppCompatActivity() {
             )
         }
 
-
+        // COMO USAR O DERMAPREV
         btnComoUsarDermaPrev.setOnClickListener {
 
             dialog.dismiss()
@@ -223,6 +232,49 @@ class AnaliseActivity : AppCompatActivity() {
                 8. Utilize Relatório para organizar as informações que podem ser apresentadas a um profissional de saúde.
                 """.trimIndent()
             )
+        }
+
+        // DÚVIDAS OU SUGESTÕES
+        btnContatoDermaPrev.setOnClickListener {
+
+            dialog.dismiss()
+
+            val intent = Intent(
+                Intent.ACTION_SENDTO
+            ).apply {
+
+                data = Uri.parse(
+                    "mailto:dermaprev.app@gmail.com"
+                )
+
+                putExtra(
+                    Intent.EXTRA_SUBJECT,
+                    "Dúvida ou sugestão — DermaPrev"
+                )
+
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    """
+                    Olá, equipe DermaPrev.
+
+                    
+                    
+                    """.trimIndent()
+                )
+            }
+
+            if (intent.resolveActivity(packageManager) != null) {
+
+                startActivity(intent)
+
+            } else {
+
+                Toast.makeText(
+                    this,
+                    "Nenhum aplicativo de e-mail encontrado.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         dialog.setContentView(view)

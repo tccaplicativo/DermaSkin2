@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootLogin"
     android:layout_width="match_parent"
@@ -62,8 +64,8 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingStart="28dp"
-            android:paddingEnd="28dp"
             android:paddingTop="34dp"
+            android:paddingEnd="28dp"
             android:paddingBottom="14dp">
 
             <!-- Logo -->
@@ -71,20 +73,20 @@
                 android:id="@+id/imgLogo"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/logo_dermaprev"
+                android:contentDescription="Logo DermaPrev"
                 android:scaleType="fitCenter"
-                android:contentDescription="Logo DermaPrev" />
+                android:src="@drawable/logo_dermaprev" />
 
             <TextView
                 android:id="@+id/txtAppName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:letterSpacing="-0.03"
                 android:text="DermaPrev"
                 android:textColor="#063B78"
                 android:textSize="42sp"
-                android:textStyle="bold"
-                android:letterSpacing="-0.03" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtSubtitle"
@@ -122,7 +124,11 @@
                     android:textStyle="bold"
                     android:visibility="gone" />
 
-                <!-- Nome completo -->
+                <!-- ================================================= -->
+                <!-- NOME COMPLETO                                     -->
+                <!-- O container inteiro será escondido no modo login -->
+                <!-- ================================================= -->
+
                 <LinearLayout
                     android:id="@+id/containerName"
                     android:layout_width="match_parent"
@@ -153,9 +159,13 @@
                         android:textColor="#102A43"
                         android:textColorHint="#7B8794"
                         android:textSize="17sp" />
+
                 </LinearLayout>
 
-                <!-- E-mail -->
+                <!-- ================================================= -->
+                <!-- E-MAIL                                            -->
+                <!-- ================================================= -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -185,9 +195,13 @@
                         android:textColor="#102A43"
                         android:textColorHint="#7B8794"
                         android:textSize="17sp" />
+
                 </LinearLayout>
 
-                <!-- Senha -->
+                <!-- ================================================= -->
+                <!-- SENHA                                             -->
+                <!-- ================================================= -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -218,13 +232,22 @@
                         android:textColorHint="#7B8794"
                         android:textSize="17sp" />
 
+                    <!-- OLHO DA SENHA -->
                     <ImageView
                         android:id="@+id/imgEye"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:clickable="true"
+                        android:contentDescription="Mostrar ou ocultar senha"
+                        android:focusable="true"
                         android:src="@drawable/ic_eye_dermaprev"
                         app:tint="#60738A" />
+
                 </LinearLayout>
+
+                <!-- ================================================= -->
+                <!-- RECUPERAR / ALTERAR SENHA                         -->
+                <!-- ================================================= -->
 
                 <TextView
                     android:id="@+id/txtForgotPassword"
@@ -232,7 +255,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"
-                    android:text="Esqueci minha senha"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Recuperar ou alterar senha"
                     android:textColor="#075BD8"
                     android:textSize="14sp" />
 
@@ -252,6 +277,7 @@
                     android:indeterminateTint="#08AFC0"
                     android:visibility="gone" />
 
+                <!-- BOTÃO ENTRAR / JÁ TENHO CONTA -->
                 <TextView
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
@@ -266,6 +292,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
+                <!-- BOTÃO CRIAR CONTA -->
                 <TextView
                     android:id="@+id/btnRegister"
                     android:layout_width="match_parent"
@@ -303,6 +330,7 @@
                     android:text="Acesso seguro e protegido"
                     android:textColor="#075BD8"
                     android:textSize="16sp" />
+
             </LinearLayout>
 
             <View

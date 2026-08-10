@@ -38,6 +38,7 @@
         android:textColor="#50627A"
         android:textSize="13sp" />
 
+
     <!-- SOBRE O DERMAPREV -->
 
     <LinearLayout
@@ -142,6 +143,65 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="Veja rapidamente como utilizar o aplicativo"
+                android:textColor="#50627A"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_chevron_forward_dermaprev"
+            app:tint="#0A4BCF" />
+
+    </LinearLayout>
+
+
+    <!-- DÚVIDAS OU SUGESTÕES -->
+
+    <LinearLayout
+        android:id="@+id/btnContatoDermaPrev"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_input_dermaprev"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_circle_white_dermaprev"
+            android:gravity="center"
+            android:text="\@"
+            android:textColor="#0A4BCF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dúvidas ou sugestões"
+                android:textColor="#063B78"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="dermaprev.app@gmail.com"
                 android:textColor="#50627A"
                 android:textSize="11sp" />
 
