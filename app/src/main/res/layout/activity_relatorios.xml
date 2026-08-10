@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_base">
+
+    <!-- DECORAÇÃO -->
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.22"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_dots_dermaprev" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="210dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="-28dp"
+        android:alpha="0.08"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_hex_dermaprev" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="40dp">
+
+            <!-- TOPO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnVoltarRelatorios"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_card_login"
+                    android:contentDescription="Voltar"
+                    android:elevation="3dp"
+                    android:padding="11dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/baseline_chevron_left"
+                    app:tint="#0A4BCF" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Relatórios"
+                    android:textColor="#063B78"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="46dp"
+                    android:layout_height="46dp" />
+
+            </LinearLayout>
+
+            <!-- INTRODUÇÃO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_home_primary_light_dermaprev"
+                android:elevation="3dp"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seus relatórios"
+                    android:textColor="#063B78"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="2dp"
+                    android:text="Consulte os relatórios gerados a partir das suas análises anteriores."
+                    android:textColor="#50627A"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <!-- ESTADO -->
+
+            <TextView
+                android:id="@+id/txtEstadoRelatorios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:padding="20dp"
+                android:text="Carregando relatórios..."
+                android:textColor="#50627A"
+                android:textSize="14sp" />
+
+            <!-- CARDS GERADOS PELO KOTLIN -->
+
+            <LinearLayout
+                android:id="@+id/containerRelatorios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <!-- AVISO -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:lineSpacingExtra="2dp"
+                android:text="Os relatórios são documentos de apoio à triagem e não substituem avaliação médica profissional."
+                android:textColor="#50627A"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

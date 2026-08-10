@@ -37,12 +37,14 @@ android {
 }
 
 dependencies {
+    implementation("org.tensorflow:tensorflow-lite:2.17.0")
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("androidx.exifinterface:exifinterface:1.3.7")
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     testImplementation(libs.junit)

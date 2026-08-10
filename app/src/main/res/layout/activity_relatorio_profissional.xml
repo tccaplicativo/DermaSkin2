@@ -14,8 +14,8 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="8dp"
         android:alpha="0.30"
-        android:src="@drawable/bg_dots_dermaprev"
-        android:contentDescription="@null" />
+        android:contentDescription="@null"
+        android:src="@drawable/bg_dots_dermaprev" />
 
     <!-- Hexágonos -->
     <ImageView
@@ -25,8 +25,8 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="-28dp"
         android:alpha="0.18"
-        android:src="@drawable/bg_hex_dermaprev"
-        android:contentDescription="@null" />
+        android:contentDescription="@null"
+        android:src="@drawable/bg_hex_dermaprev" />
 
     <!-- Ondas inferiores -->
     <ImageView
@@ -36,8 +36,8 @@
         android:layout_marginStart="-95dp"
         android:layout_marginBottom="-12dp"
         android:alpha="0.32"
-        android:src="@drawable/bg_wave_bottom_dermaprev"
-        android:contentDescription="@null" />
+        android:contentDescription="@null"
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
 
     <ImageView
         android:layout_width="330dp"
@@ -46,9 +46,9 @@
         android:layout_marginEnd="-95dp"
         android:layout_marginBottom="-12dp"
         android:alpha="0.32"
+        android:contentDescription="@null"
         android:rotationY="180"
-        android:src="@drawable/bg_wave_bottom_dermaprev"
-        android:contentDescription="@null" />
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -102,7 +102,9 @@
                         android:textColor="#1DB9D2"
                         android:textSize="25sp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <!-- Título -->
@@ -110,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
-                android:text="Relatório profissional"
+                android:text="Relatório da triagem"
                 android:textColor="#063B78"
                 android:textSize="27sp"
                 android:textStyle="bold" />
@@ -119,28 +121,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Resumo organizado para apoiar a comunicação com um profissional de saúde."
+                android:lineSpacingExtra="2dp"
+                android:text="Gere um documento organizado para apresentar a um profissional de saúde."
                 android:textColor="#50627A"
-                android:textSize="14sp"
-                android:lineSpacingExtra="2dp" />
+                android:textSize="14sp" />
 
-            <!-- Resumo e imagem -->
+            <!-- Imagem -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_card_login"
                 android:elevation="7dp"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingStart="20dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="20dp"
-                android:paddingBottom="20dp">
+                android:paddingBottom="22dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resumo para encaminhamento"
+                    android:text="Imagem da análise"
                     android:textColor="#063B78"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -162,8 +165,8 @@
 
                 <ImageView
                     android:id="@+id/imgRelatorioFoto"
-                    android:layout_width="240dp"
-                    android:layout_height="240dp"
+                    android:layout_width="260dp"
+                    android:layout_height="260dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/bg_circle"
@@ -171,123 +174,15 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_skin_placeholder" />
 
-            </LinearLayout>
-
-            <!-- Resultado -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:background="@drawable/bg_card_login"
-                android:elevation="7dp"
-                android:orientation="vertical"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="20dp">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultado da triagem"
-                    android:textColor="#063B78"
-                    android:textSize="21sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtResumoRelatorio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_input_dermaprev"
-                    android:lineSpacingExtra="4dp"
-                    android:padding="16dp"
-                    android:text="Resumo do resultado"
-                    android:textColor="#173B70"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <!-- Dados clínicos -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:background="@drawable/bg_card_login"
-                android:elevation="7dp"
-                android:orientation="vertical"
-                android:paddingStart="20dp"
-                android:paddingTop="20dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="20dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Dados clínicos informados"
-                    android:textColor="#063B78"
-                    android:textSize="21sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtClinicoRelatorio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_input_dermaprev"
-                    android:lineSpacingExtra="4dp"
-                    android:padding="16dp"
-                    android:text="Dados clínicos"
-                    android:textColor="#173B70"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <!-- Aviso -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:background="@drawable/bg_card_login"
-                android:elevation="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="54dp"
-                    android:layout_height="54dp"
-                    android:background="@drawable/bg_input_dermaprev"
+                    android:layout_marginTop="18dp"
                     android:gravity="center"
-                    android:text="!"
-                    android:textColor="#0A4BCF"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Uso do relatório"
-                        android:textColor="#063B78"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:lineSpacingExtra="2dp"
-                        android:text="Leve este relatório a um profissional de saúde. Ele serve apenas como apoio à comunicação e não como diagnóstico médico."
-                        android:textColor="#50627A"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                    android:lineSpacingExtra="2dp"
+                    android:text="O PDF reunirá o resultado da triagem, a imagem analisada e as informações fornecidas durante a avaliação."
+                    android:textColor="#50627A"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -311,11 +206,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/bg_button_primary_dermaprev"
+                android:background="@drawable/bg_button_outline_dermaprev"
                 android:backgroundTint="@null"
                 android:text="Ir para histórico"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
+                android:textColor="#0A4BCF"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:backgroundTint="@null" />
@@ -327,7 +222,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_button_outline_dermaprev"
                 android:backgroundTint="@null"
-                android:text="Voltar"
+                android:text="Voltar ao início"
                 android:textAllCaps="false"
                 android:textColor="#0A4BCF"
                 android:textSize="16sp"

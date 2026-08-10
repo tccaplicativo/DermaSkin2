@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_base">
+
+    <!-- DECORAÇÃO -->
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.24"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_dots_dermaprev" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="210dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="-26dp"
+        android:alpha="0.10"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_hex_dermaprev" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="38dp">
+
+            <!-- TOPO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnVoltarEvolucao"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_card_login"
+                    android:contentDescription="Voltar"
+                    android:elevation="3dp"
+                    android:padding="11dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/baseline_chevron_left"
+                    app:tint="#0A4BCF" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Evolução da lesão"
+                    android:textColor="#0A3D91"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="46dp"
+                    android:layout_height="46dp" />
+
+            </LinearLayout>
+
+            <!-- CARREGANDO -->
+
+            <LinearLayout
+                android:id="@+id/layoutCarregandoEvolucao"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carregando evolução..."
+                    android:textColor="#687990"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <!-- CONTEÚDO -->
+
+            <LinearLayout
+                android:id="@+id/layoutConteudoEvolucao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- IDENTIFICAÇÃO -->
+
+                <TextView
+                    android:id="@+id/txtNomeLesaoEvolucao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:text="Braço • Lesão 1"
+                    android:textColor="#0A3D91"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtResumoEvolucao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="3 registros no acompanhamento"
+                    android:textColor="#687990"
+                    android:textSize="13sp" />
+
+                <!-- COMPARAÇÃO -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="Comparação visual"
+                    android:textColor="#0A3D91"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Compare o primeiro e o registro mais recente."
+                    android:textColor="#687990"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <!-- PRIMEIRO -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_card_login"
+                        android:elevation="4dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Primeiro registro"
+                            android:textColor="#174D3B"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgPrimeiroRegistro"
+                            android:layout_width="match_parent"
+                            android:layout_height="145dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_card_monitoramento_dermaprev"
+                            android:clipToOutline="true"
+                            android:contentDescription="Primeiro registro da lesão"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_skin_placeholder" />
+
+                        <TextView
+                            android:id="@+id/txtDataPrimeiroRegistro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:gravity="center"
+                            android:text="09/08/2026"
+                            android:textColor="#687990"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="10dp"
+                        android:layout_height="1dp" />
+
+                    <!-- MAIS RECENTE -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_card_login"
+                        android:elevation="4dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Mais recente"
+                            android:textColor="#174D3B"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgUltimoRegistro"
+                            android:layout_width="match_parent"
+                            android:layout_height="145dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_card_monitoramento_dermaprev"
+                            android:clipToOutline="true"
+                            android:contentDescription="Registro mais recente da lesão"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_skin_placeholder" />
+
+                        <TextView
+                            android:id="@+id/txtDataUltimoRegistro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:gravity="center"
+                            android:text="06/09/2026"
+                            android:textColor="#687990"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- GRÁFICO -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:text="Score visual da IA"
+                    android:textColor="#0A3D91"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Saída do classificador visual em cada registro."
+                    android:textColor="#687990"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_card_login"
+                    android:elevation="4dp"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <com.perabru.dermaskin2.GraficoEvolucaoView
+                        android:id="@+id/graficoEvolucao"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp" />
+
+                </LinearLayout>
+
+                <!-- AVISO DO GRÁFICO -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_card_monitoramento_dermaprev"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_evolucao_monitoramento"
+                        app:tint="#2E8B67" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Variações podem ocorrer por iluminação, distância, posição e qualidade da fotografia. Este gráfico não representa evolução clínica."
+                        android:textColor="#527064"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <!-- TIMELINE -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:text="Histórico do acompanhamento"
+                    android:textColor="#0A3D91"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/containerRegistrosEvolucao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="vertical" />
+
+                <!-- NOVA FOTO -->
+
+                <LinearLayout
+                    android:id="@+id/btnRegistrarNovaFoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/bg_card_monitoramento_dermaprev"
+                    android:clickable="true"
+                    android:elevation="4dp"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_camera_monitoramento"
+                        app:tint="#2E8B67" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Registrar nova foto"
+                        android:textColor="#174D3B"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="2dp"
+                    android:text="O acompanhamento é um recurso auxiliar e não substitui avaliação dermatológica."
+                    android:textColor="#75869A"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

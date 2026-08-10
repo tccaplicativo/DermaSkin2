@@ -1,11 +1,13 @@
 package com.perabru.dermaskin2
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.Paint
+import android.graphics.RectF
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
 import android.os.Bundle
@@ -15,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.exifinterface.media.ExifInterface
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -25,8 +28,7 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
 
     private lateinit var txtAreaRelatorio: TextView
     private lateinit var imgRelatorioFoto: ImageView
-    private lateinit var txtResumoRelatorio: TextView
-    private lateinit var txtClinicoRelatorio: TextView
+
     private lateinit var btnExportarRelatorioPdf: Button
     private lateinit var btnHistoricoRelatorio: Button
     private lateinit var btnVoltarRelatorio: Button
@@ -34,6 +36,7 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
     private var areaSelecionada: String = ""
     private var imagePath: String = ""
 
+    // Questionário da lesão
     private var tempoLesao: String = ""
     private var mudancaTamanho: String = ""
     private var mudancaCor: String = ""
@@ -42,38 +45,72 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
     private var dor: String = ""
     private var formatoIrregular: String = ""
 
+    // Resultado da triagem
     private var riscoTitulo: String = ""
     private var riscoPercentual: String = ""
     private var riscoDescricao: String = ""
+    private var nivelAtencao: String = ""
+
+    // Dados da IA
+    private var classificacaoIA: String = ""
+    private var confiancaIA: Float = 0f
+    private var scoreSuspeitaIA: Float = 0f
+    private var confiancaClassificacaoPercentual: Int = 0
 
     private var pendingPdfBytes: ByteArray? = null
 
     private val createPdfLauncher =
-        registerForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
+        registerForActivityResult(
+            ActivityResultContracts.CreateDocument("application/pdf")
+        ) { uri ->
+
             if (uri != null) {
+
                 try {
+
                     val bytes = pendingPdfBytes
 
                     if (bytes == null) {
-                        Toast.makeText(this, "Nenhum PDF foi gerado.", Toast.LENGTH_LONG).show()
+
+                        Toast.makeText(
+                            this,
+                            "Nenhum PDF foi gerado.",
+                            Toast.LENGTH_LONG
+                        ).show()
+
                         return@registerForActivityResult
                     }
 
-                    contentResolver.openOutputStream(uri)?.use { outputStream ->
-                        outputStream.write(bytes)
-                    }
+                    contentResolver
+                        .openOutputStream(uri)
+                        ?.use { outputStream ->
 
-                    Toast.makeText(this, "Relatório salvo com sucesso!", Toast.LENGTH_LONG).show()
+                            outputStream.write(bytes)
+                        }
+
+                    Toast.makeText(
+                        this,
+                        "Relatório salvo com sucesso!",
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Erro ao salvar PDF: ${e.message}", Toast.LENGTH_LONG).show()
+
+                    Toast.makeText(
+                        this,
+                        "Erro ao salvar PDF: ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_relatorio_profissional)
+
+        setContentView(
+            R.layout.activity_relatorio_profissional
+        )
 
         recuperarDados()
         iniciarComponentes()
@@ -82,261 +119,722 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
     }
 
     private fun recuperarDados() {
-        areaSelecionada = intent.getStringExtra("areaSelecionada") ?: "Não informada"
-        imagePath = intent.getStringExtra("imagePath") ?: ""
 
-        tempoLesao = intent.getStringExtra("tempoLesao") ?: "Não informado"
-        mudancaTamanho = intent.getStringExtra("mudancaTamanho") ?: "Não informado"
-        mudancaCor = intent.getStringExtra("mudancaCor") ?: "Não informado"
-        coceira = intent.getStringExtra("coceira") ?: "Não informado"
-        sangramento = intent.getStringExtra("sangramento") ?: "Não informado"
-        dor = intent.getStringExtra("dor") ?: "Não informado"
-        formatoIrregular = intent.getStringExtra("formatoIrregular") ?: "Não informado"
+        areaSelecionada =
+            intent.getStringExtra("areaSelecionada")
+                ?: "Não informada"
 
-        riscoTitulo = intent.getStringExtra("riscoTitulo") ?: "Risco não calculado"
-        riscoPercentual = intent.getStringExtra("riscoPercentual") ?: "--"
-        riscoDescricao = intent.getStringExtra("riscoDescricao") ?: "Sem descrição disponível."
+        imagePath =
+            intent.getStringExtra("imagePath")
+                ?: ""
+
+        tempoLesao =
+            intent.getStringExtra("tempoLesao")
+                ?: "Não informado"
+
+        mudancaTamanho =
+            intent.getStringExtra("mudancaTamanho")
+                ?: "Não informado"
+
+        mudancaCor =
+            intent.getStringExtra("mudancaCor")
+                ?: "Não informado"
+
+        coceira =
+            intent.getStringExtra("coceira")
+                ?: "Não informado"
+
+        sangramento =
+            intent.getStringExtra("sangramento")
+                ?: "Não informado"
+
+        dor =
+            intent.getStringExtra("dor")
+                ?: "Não informado"
+
+        formatoIrregular =
+            intent.getStringExtra("formatoIrregular")
+                ?: "Não informado"
+
+        riscoTitulo =
+            intent.getStringExtra("riscoTitulo")
+                ?: "Resultado não calculado"
+
+        riscoPercentual =
+            intent.getStringExtra("riscoPercentual")
+                ?: "--"
+
+        riscoDescricao =
+            intent.getStringExtra("riscoDescricao")
+                ?: "Sem descrição disponível."
+
+        nivelAtencao =
+            intent.getStringExtra("nivelAtencao")
+                ?: riscoTitulo
+
+        classificacaoIA =
+            intent.getStringExtra("classificacaoIA")
+                ?: "Não informado"
+
+        confiancaIA =
+            intent.getFloatExtra(
+                "confiancaIA",
+                0f
+            )
+
+        scoreSuspeitaIA =
+            intent.getFloatExtra(
+                "scoreSuspeitaIA",
+                0f
+            )
+
+        confiancaClassificacaoPercentual =
+            intent.getIntExtra(
+                "confiancaClassificacaoPercentual",
+                0
+            )
     }
 
     private fun iniciarComponentes() {
-        txtAreaRelatorio = findViewById(R.id.txtAreaRelatorio)
-        imgRelatorioFoto = findViewById(R.id.imgRelatorioFoto)
-        txtResumoRelatorio = findViewById(R.id.txtResumoRelatorio)
-        txtClinicoRelatorio = findViewById(R.id.txtClinicoRelatorio)
 
-        btnExportarRelatorioPdf = findViewById(R.id.btnExportarRelatorioPdf)
-        btnHistoricoRelatorio = findViewById(R.id.btnHistoricoRelatorio)
-        btnVoltarRelatorio = findViewById(R.id.btnVoltarRelatorio)
+        txtAreaRelatorio =
+            findViewById(R.id.txtAreaRelatorio)
+
+        imgRelatorioFoto =
+            findViewById(R.id.imgRelatorioFoto)
+
+        btnExportarRelatorioPdf =
+            findViewById(R.id.btnExportarRelatorioPdf)
+
+        btnHistoricoRelatorio =
+            findViewById(R.id.btnHistoricoRelatorio)
+
+        btnVoltarRelatorio =
+            findViewById(R.id.btnVoltarRelatorio)
     }
 
     private fun configurarTela() {
-        txtAreaRelatorio.text = "Área da lesão: $areaSelecionada"
 
-        txtResumoRelatorio.text =
-            "Classificação: $riscoTitulo\n" +
-                    "Percentual estimado: $riscoPercentual\n\n" +
-                    riscoDescricao
-
-        txtClinicoRelatorio.text =
-            "Tempo da lesão: $tempoLesao\n\n" +
-                    "Mudança de tamanho: $mudancaTamanho\n" +
-                    "Mudança de cor: $mudancaCor\n" +
-                    "Coceira: $coceira\n" +
-                    "Sangramento: $sangramento\n" +
-                    "Dor: $dor\n" +
-                    "Formato irregular: $formatoIrregular"
+        txtAreaRelatorio.text =
+            "Área da lesão: $areaSelecionada"
 
         carregarImagem()
     }
 
     private fun carregarImagem() {
-        if (imagePath.isBlank()) return
 
-        val file = File(imagePath)
+        if (imagePath.isBlank()) {
+            return
+        }
+
+        val file =
+            File(imagePath)
 
         if (file.exists()) {
-            val bitmap = BitmapFactory.decodeFile(imagePath)
-            imgRelatorioFoto.setImageBitmap(bitmap)
+
+            try {
+
+                val bitmap =
+                    carregarImagemComOrientacaoCorreta(
+                        imagePath
+                    )
+
+                imgRelatorioFoto.setImageBitmap(
+                    bitmap
+                )
+
+            } catch (_: Exception) {
+
+                val bitmap =
+                    BitmapFactory.decodeFile(
+                        imagePath
+                    )
+
+                imgRelatorioFoto.setImageBitmap(
+                    bitmap
+                )
+            }
         }
     }
 
     private fun configurarCliques() {
+
         btnExportarRelatorioPdf.setOnClickListener {
+
             exportarPdf()
         }
 
         btnHistoricoRelatorio.setOnClickListener {
-            val intent = Intent(this, HistoricoAnalisesActivity::class.java)
+
+            val intent =
+                Intent(
+                    this,
+                    HistoricoAnalisesActivity::class.java
+                )
+
             startActivity(intent)
         }
 
+        /*
+         * Volta diretamente para a tela inicial
+         * da análise e remove as telas intermediárias.
+         */
         btnVoltarRelatorio.setOnClickListener {
+
+            val intent =
+                Intent(
+                    this,
+                    AnaliseActivity::class.java
+                )
+
+            intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP
+
+            startActivity(intent)
+
             finish()
         }
     }
 
     private fun exportarPdf() {
+
         try {
-            pendingPdfBytes = gerarPdfBytes()
-            val fileName = "relatorio_dermaprev_${System.currentTimeMillis()}.pdf"
-            createPdfLauncher.launch(fileName)
+
+            pendingPdfBytes =
+                gerarPdfBytes()
+
+            val fileName =
+                "relatorio_dermaprev_${System.currentTimeMillis()}.pdf"
+
+            createPdfLauncher.launch(
+                fileName
+            )
+
         } catch (e: Exception) {
-            Toast.makeText(this, "Erro ao gerar PDF: ${e.message}", Toast.LENGTH_LONG).show()
+
+            Toast.makeText(
+                this,
+                "Erro ao gerar PDF: ${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
     private fun gerarPdfBytes(): ByteArray {
-        val pdfDocument = PdfDocument()
+
+        val pdfDocument =
+            PdfDocument()
 
         val pageWidth = 595
         val pageHeight = 842
 
-        val pageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
-        val page = pdfDocument.startPage(pageInfo)
+        val pageInfo =
+            PdfDocument.PageInfo
+                .Builder(
+                    pageWidth,
+                    pageHeight,
+                    1
+                )
+                .create()
 
-        desenharPdf(page.canvas)
+        val page =
+            pdfDocument.startPage(
+                pageInfo
+            )
 
-        pdfDocument.finishPage(page)
+        desenharPdf(
+            page.canvas
+        )
 
-        val outputStream = ByteArrayOutputStream()
-        pdfDocument.writeTo(outputStream)
+        pdfDocument.finishPage(
+            page
+        )
+
+        val outputStream =
+            ByteArrayOutputStream()
+
+        pdfDocument.writeTo(
+            outputStream
+        )
+
         pdfDocument.close()
 
         return outputStream.toByteArray()
     }
 
-    private fun desenharPdf(canvas: Canvas) {
+    private fun desenharPdf(
+        canvas: Canvas
+    ) {
+
         val pageWidth = 595f
         val pageHeight = 842f
-        val margin = 34f
-        val right = pageWidth - margin
 
-        canvas.drawColor(Color.parseColor("#F6FBFF"))
+        val margin = 38f
+        val contentWidth =
+            pageWidth - (margin * 2)
 
-        val cardPaint = Paint().apply {
-            color = Color.WHITE
-            style = Paint.Style.FILL
-            isAntiAlias = true
-        }
+        val right =
+            pageWidth - margin
 
-        val softBluePaint = Paint().apply {
-            color = Color.parseColor("#F2FAFF")
-            style = Paint.Style.FILL
-            isAntiAlias = true
-        }
-
-        val borderPaint = Paint().apply {
-            color = Color.parseColor("#DDECF7")
-            style = Paint.Style.STROKE
-            strokeWidth = 1.5f
-            isAntiAlias = true
-        }
-
-        val dermaPaint = Paint().apply {
-            color = Color.parseColor("#063B78")
-            textSize = 30f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
-
-        val prevPaint = Paint().apply {
-            color = Color.parseColor("#1DB9D2")
-            textSize = 30f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
-
-        val sectionPaint = Paint().apply {
-            color = Color.parseColor("#063B78")
-            textSize = 15f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
-
-        val titlePaint = Paint().apply {
-            color = Color.parseColor("#063B78")
-            textSize = 27f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
-
-        val normalPaint = Paint().apply {
-            color = Color.parseColor("#173B70")
-            textSize = 10.5f
-            isAntiAlias = true
-        }
-
-        val smallPaint = Paint().apply {
-            color = Color.parseColor("#68798F")
-            textSize = 8.5f
-            isAntiAlias = true
-        }
-
-        val mutedPaint = Paint().apply {
-            color = Color.parseColor("#50627A")
-            textSize = 9.5f
-            isAntiAlias = true
-        }
-
-        val riskPaint = Paint().apply {
-            color = when {
-                riscoTitulo.contains("alto", true) -> Color.parseColor("#D9534F")
-                riscoTitulo.contains("médio", true) || riscoTitulo.contains("medio", true) -> Color.parseColor("#E6A23C")
-                riscoTitulo.contains("baixo", true) -> Color.parseColor("#28A745")
-                else -> Color.parseColor("#063B78")
-            }
-            textSize = 36f
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
-
-        val iconPaint = Paint().apply {
-            color = Color.parseColor("#0A4BCF")
-            textSize = 24f
-            textAlign = Paint.Align.CENTER
-            typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            isAntiAlias = true
-        }
-
-        // HEADER
-        canvas.drawRoundRect(margin, 28f, right, 112f, 24f, 24f, cardPaint)
-        canvas.drawRoundRect(margin, 28f, right, 112f, 24f, 24f, borderPaint)
-
-        val logo = BitmapFactory.decodeResource(resources, R.drawable.logo_dermaprev)
-        val logoSize = 36
-        val logoScaled = Bitmap.createScaledBitmap(logo, logoSize, logoSize, true)
-
-        val dermaText = "Derma"
-        val prevText = "Prev"
-        val dermaWidth = dermaPaint.measureText(dermaText)
-        val prevWidth = prevPaint.measureText(prevText)
-        val brandWidth = logoSize + 12f + dermaWidth + prevWidth
-
-        val brandStartX = (pageWidth - brandWidth) / 2f
-        val logoY = 47f
-        val textBaseY = 75f
-
-        canvas.drawBitmap(logoScaled, brandStartX, logoY, null)
-        canvas.drawText(dermaText, brandStartX + logoSize + 12f, textBaseY, dermaPaint)
-        canvas.drawText(prevText, brandStartX + logoSize + 12f + dermaWidth, textBaseY, prevPaint)
-
-        val subtitle = "Relatório para profissional de saúde"
-        val subtitleWidth = mutedPaint.measureText(subtitle)
-        canvas.drawText(subtitle, (pageWidth - subtitleWidth) / 2f, 94f, mutedPaint)
-
-        val date = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR")).format(Date())
-        val dateText = "Data: $date"
-        val dateWidth = smallPaint.measureText(dateText)
-        canvas.drawText(dateText, right - dateWidth - 12f, 55f, smallPaint)
-
-        // CARD RESULTADO
-        canvas.drawRoundRect(margin, 132f, right, 252f, 24f, 24f, cardPaint)
-        canvas.drawRoundRect(margin, 132f, right, 252f, 24f, 24f, borderPaint)
-
-        canvas.drawText("Resultado da triagem", 54f, 160f, sectionPaint)
-        canvas.drawText(riscoTitulo, 54f, 197f, titlePaint)
-
-        val riskWidth = riskPaint.measureText(riscoPercentual)
-        canvas.drawText(riscoPercentual, right - riskWidth - 36f, 197f, riskPaint)
-
-        drawMultilineText(
-            canvas,
-            riscoDescricao,
-            54f,
-            222f,
-            normalPaint,
-            82
+        canvas.drawColor(
+            Color.parseColor("#F6FBFF")
         )
 
-        // CARD DADOS + IMAGEM
-        canvas.drawRoundRect(margin, 272f, right, 448f, 24f, 24f, cardPaint)
-        canvas.drawRoundRect(margin, 272f, right, 448f, 24f, 24f, borderPaint)
+        val branco =
+            Paint().apply {
+                color = Color.WHITE
+                style = Paint.Style.FILL
+                isAntiAlias = true
+            }
 
-        canvas.drawText("Dados informados pelo usuário", 54f, 302f, sectionPaint)
+        val azulSuave =
+            Paint().apply {
+                color =
+                    Color.parseColor("#F0F8FF")
 
-        val dadosClinicos =
-            "Área da lesão: $areaSelecionada\n" +
-                    "Tempo da lesão: $tempoLesao\n" +
+                style =
+                    Paint.Style.FILL
+
+                isAntiAlias = true
+            }
+
+        val borda =
+            Paint().apply {
+
+                color =
+                    Color.parseColor("#D9EAF5")
+
+                style =
+                    Paint.Style.STROKE
+
+                strokeWidth =
+                    1.2f
+
+                isAntiAlias = true
+            }
+
+        val azulEscuro =
+            Color.parseColor("#063B78")
+
+        val azulClaro =
+            Color.parseColor("#1DB9D2")
+
+        val titulo =
+            Paint().apply {
+
+                color = azulEscuro
+
+                textSize = 20f
+
+                typeface =
+                    Typeface.create(
+                        Typeface.DEFAULT,
+                        Typeface.BOLD
+                    )
+
+                isAntiAlias = true
+            }
+
+        val secao =
+            Paint().apply {
+
+                color = azulEscuro
+
+                textSize = 13.5f
+
+                typeface =
+                    Typeface.create(
+                        Typeface.DEFAULT,
+                        Typeface.BOLD
+                    )
+
+                isAntiAlias = true
+            }
+
+        val normal =
+            Paint().apply {
+
+                color =
+                    Color.parseColor("#173B70")
+
+                textSize = 10f
+
+                isAntiAlias = true
+            }
+
+        val pequeno =
+            Paint().apply {
+
+                color =
+                    Color.parseColor("#60738A")
+
+                textSize = 8.5f
+
+                isAntiAlias = true
+            }
+
+        val destaque =
+            Paint().apply {
+
+                color =
+                    corNivelAtencao()
+
+                textSize = 22f
+
+                typeface =
+                    Typeface.create(
+                        Typeface.DEFAULT,
+                        Typeface.BOLD
+                    )
+
+                isAntiAlias = true
+            }
+
+        val percentualPaint =
+            Paint().apply {
+
+                color = azulEscuro
+
+                textSize = 30f
+
+                typeface =
+                    Typeface.create(
+                        Typeface.DEFAULT,
+                        Typeface.BOLD
+                    )
+
+                isAntiAlias = true
+            }
+
+        /*
+         * HEADER
+         */
+        canvas.drawRoundRect(
+            margin,
+            28f,
+            right,
+            105f,
+            18f,
+            18f,
+            branco
+        )
+
+        canvas.drawRoundRect(
+            margin,
+            28f,
+            right,
+            105f,
+            18f,
+            18f,
+            borda
+        )
+
+        val logo =
+            BitmapFactory.decodeResource(
+                resources,
+                R.drawable.logo_dermaprev
+            )
+
+        val logoScaled =
+            Bitmap.createScaledBitmap(
+                logo,
+                36,
+                36,
+                true
+            )
+
+        canvas.drawBitmap(
+            logoScaled,
+            55f,
+            46f,
+            null
+        )
+
+        val dermaPaint =
+            Paint().apply {
+
+                color = azulEscuro
+
+                textSize = 23f
+
+                typeface =
+                    Typeface.create(
+                        Typeface.DEFAULT,
+                        Typeface.BOLD
+                    )
+
+                isAntiAlias = true
+            }
+
+        val prevPaint =
+            Paint().apply {
+
+                color = azulClaro
+
+                textSize = 23f
+
+                typeface =
+                    Typeface.create(
+                        Typeface.DEFAULT,
+                        Typeface.BOLD
+                    )
+
+                isAntiAlias = true
+            }
+
+        canvas.drawText(
+            "Derma",
+            101f,
+            70f,
+            dermaPaint
+        )
+
+        val larguraDerma =
+            dermaPaint.measureText(
+                "Derma"
+            )
+
+        canvas.drawText(
+            "Prev",
+            101f + larguraDerma,
+            70f,
+            prevPaint
+        )
+
+        canvas.drawText(
+            "Relatório de triagem de lesão cutânea",
+            101f,
+            88f,
+            pequeno
+        )
+
+        val data =
+            SimpleDateFormat(
+                "dd/MM/yyyy HH:mm",
+                Locale("pt", "BR")
+            ).format(
+                Date()
+            )
+
+        val dataTexto =
+            "Gerado em $data"
+
+        canvas.drawText(
+            dataTexto,
+            right - pequeno.measureText(dataTexto) - 15f,
+            88f,
+            pequeno
+        )
+
+        var y = 132f
+
+        /*
+         * TÍTULO
+         */
+        canvas.drawText(
+            "Resultado da triagem",
+            margin,
+            y,
+            titulo
+        )
+
+        y += 20f
+
+        /*
+         * CARD RESULTADO
+         */
+        val cardResultadoTop =
+            y
+
+        val cardResultadoBottom =
+            y + 105f
+
+        canvas.drawRoundRect(
+            margin,
+            cardResultadoTop,
+            right,
+            cardResultadoBottom,
+            18f,
+            18f,
+            branco
+        )
+
+        canvas.drawRoundRect(
+            margin,
+            cardResultadoTop,
+            right,
+            cardResultadoBottom,
+            18f,
+            18f,
+            borda
+        )
+
+        canvas.drawText(
+            "Nível de atenção",
+            margin + 18f,
+            y + 25f,
+            pequeno
+        )
+
+        canvas.drawText(
+            nivelAtencao,
+            margin + 18f,
+            y + 52f,
+            destaque
+        )
+
+        canvas.drawText(
+            "Suspeita visual de lesões cutâneas",
+            right - 195f,
+            y + 25f,
+            pequeno
+        )
+
+        val larguraPercentual =
+            percentualPaint.measureText(
+                riscoPercentual
+            )
+
+        canvas.drawText(
+            riscoPercentual,
+            right - larguraPercentual - 18f,
+            y + 63f,
+            percentualPaint
+        )
+
+        canvas.drawText(
+            "Score visual do classificador de imagem",
+            right - 195f,
+            y + 82f,
+            pequeno
+        )
+
+        y =
+            cardResultadoBottom + 18f
+
+        /*
+         * CARD IMAGEM
+         */
+        val imagemCardTop =
+            y
+
+        val imagemCardBottom =
+            imagemCardTop + 190f
+
+        canvas.drawRoundRect(
+            margin,
+            imagemCardTop,
+            right,
+            imagemCardBottom,
+            18f,
+            18f,
+            branco
+        )
+
+        canvas.drawRoundRect(
+            margin,
+            imagemCardTop,
+            right,
+            imagemCardBottom,
+            18f,
+            18f,
+            borda
+        )
+
+        canvas.drawText(
+            "Imagem analisada",
+            margin + 18f,
+            imagemCardTop + 28f,
+            secao
+        )
+
+        canvas.drawText(
+            "Área da lesão: $areaSelecionada",
+            margin + 18f,
+            imagemCardTop + 52f,
+            normal
+        )
+
+        val file =
+            File(imagePath)
+
+        if (file.exists()) {
+
+            try {
+
+                val bitmap =
+                    carregarImagemComOrientacaoCorreta(
+                        imagePath
+                    )
+
+                desenharImagemCentralizada(
+                    canvas = canvas,
+                    bitmap = bitmap,
+                    left = margin + 18f,
+                    top = imagemCardTop + 68f,
+                    width = 105f,
+                    height = 105f
+                )
+
+            } catch (_: Exception) {
+            }
+        }
+
+        val textoImagem =
+            "A imagem apresentada corresponde à fotografia utilizada pelo aplicativo durante a análise visual."
+
+        drawWrappedText(
+            canvas = canvas,
+            text = textoImagem,
+            x = margin + 145f,
+            startY = imagemCardTop + 92f,
+            paint = normal,
+            maxWidth = contentWidth - 170f,
+            lineSpacing = 5f
+        )
+
+        y =
+            imagemCardBottom + 18f
+
+        /*
+         * CARD INFORMAÇÕES
+         */
+        val infoTop =
+            y
+
+        val infoBottom =
+            infoTop + 175f
+
+        canvas.drawRoundRect(
+            margin,
+            infoTop,
+            right,
+            infoBottom,
+            18f,
+            18f,
+            branco
+        )
+
+        canvas.drawRoundRect(
+            margin,
+            infoTop,
+            right,
+            infoBottom,
+            18f,
+            18f,
+            borda
+        )
+
+        canvas.drawText(
+            "Informações relatadas pelo usuário",
+            margin + 18f,
+            infoTop + 28f,
+            secao
+        )
+
+        val dados =
+            "Tempo da lesão: $tempoLesao\n" +
                     "Mudança de tamanho: $mudancaTamanho\n" +
                     "Mudança de cor: $mudancaCor\n" +
                     "Coceira: $coceira\n" +
@@ -344,85 +842,398 @@ class RelatorioProfissionalActivity : AppCompatActivity() {
                     "Dor: $dor\n" +
                     "Formato irregular: $formatoIrregular"
 
-        drawMultilineText(canvas, dadosClinicos, 54f, 330f, normalPaint, 56)
+        drawWrappedText(
+            canvas = canvas,
+            text = dados,
+            x = margin + 18f,
+            startY = infoTop + 53f,
+            paint = normal,
+            maxWidth = contentWidth - 36f,
+            lineSpacing = 4f
+        )
 
-        val file = File(imagePath)
-        if (file.exists()) {
-            val bitmap = BitmapFactory.decodeFile(imagePath)
-            val image = Bitmap.createScaledBitmap(bitmap, 112, 112, true)
+        y =
+            infoBottom + 18f
 
-            canvas.drawRoundRect(420f, 310f, 540f, 430f, 18f, 18f, softBluePaint)
-            canvas.drawRoundRect(420f, 310f, 540f, 430f, 18f, 18f, borderPaint)
-            canvas.drawBitmap(image, 424f, 314f, null)
-            canvas.drawText("Imagem analisada", 426f, 442f, smallPaint)
-        }
+        /*
+         * CARD AVISO
+         */
+        val avisoTop =
+            y
 
-        // CARD OBSERVAÇÕES
-        canvas.drawRoundRect(margin, 468f, right, 616f, 24f, 24f, cardPaint)
-        canvas.drawRoundRect(margin, 468f, right, 616f, 24f, 24f, borderPaint)
+        val avisoBottom =
+            avisoTop + 102f
 
-        canvas.drawText("Observações para avaliação profissional", 54f, 498f, sectionPaint)
+        canvas.drawRoundRect(
+            margin,
+            avisoTop,
+            right,
+            avisoBottom,
+            18f,
+            18f,
+            azulSuave
+        )
 
-        val observacoes =
-            "Este relatório organiza a imagem, a localização da lesão, as respostas clínicas e a classificação inicial gerada pelo aplicativo. " +
-                    "A triagem não possui valor diagnóstico definitivo. A decisão clínica deve ser feita por profissional habilitado, considerando exame físico, dermatoscopia e, se necessário, outros procedimentos."
+        canvas.drawRoundRect(
+            margin,
+            avisoTop,
+            right,
+            avisoBottom,
+            18f,
+            18f,
+            borda
+        )
 
-        drawMultilineText(canvas, observacoes, 54f, 526f, normalPaint, 86)
-
-        // CARD AVISO
-        canvas.drawRoundRect(margin, 636f, right, 742f, 24f, 24f, cardPaint)
-        canvas.drawRoundRect(margin, 636f, right, 742f, 24f, 24f, borderPaint)
-
-        canvas.drawCircle(64f, 674f, 18f, softBluePaint)
-        canvas.drawText("!", 64f, 683f, iconPaint)
-
-        canvas.drawText("Aviso importante", 92f, 668f, sectionPaint)
+        canvas.drawText(
+            "Orientação importante",
+            margin + 18f,
+            avisoTop + 27f,
+            secao
+        )
 
         val aviso =
-            "O DermaPrev realiza apenas uma triagem visual com apoio de tecnologia. " +
-                    "Este documento não substitui consulta médica, não confirma diagnóstico e não descarta doenças de pele."
+            "Este documento foi gerado para apoiar a comunicação com um profissional de saúde. " +
+                    "O DermaPrev realiza uma triagem auxiliar e não confirma nem descarta câncer de pele. " +
+                    "A interpretação clínica deve ser realizada por profissional habilitado."
 
-        drawMultilineText(canvas, aviso, 92f, 694f, normalPaint, 74)
+        drawWrappedText(
+            canvas = canvas,
+            text = aviso,
+            x = margin + 18f,
+            startY = avisoTop + 50f,
+            paint = normal,
+            maxWidth = contentWidth - 36f,
+            lineSpacing = 4f
+        )
 
-        // RODAPÉ
-        canvas.drawText("Gerado pelo aplicativo DermaPrev", 40f, pageHeight - 28f, smallPaint)
+        /*
+         * RODAPÉ
+         */
+        val rodape =
+            "DermaPrev • Documento de apoio à triagem"
+
+        canvas.drawText(
+            rodape,
+            margin,
+            pageHeight - 25f,
+            pequeno
+        )
     }
 
-    private fun drawMultilineText(
+    /*
+     * Agora as linhas são quebradas pela largura REAL
+     * do texto e não pela quantidade de caracteres.
+     */
+    private fun drawWrappedText(
         canvas: Canvas,
         text: String,
         x: Float,
         startY: Float,
         paint: Paint,
-        maxCharsPerLine: Int
-    ) {
-        var y = startY
-        val lines = mutableListOf<String>()
+        maxWidth: Float,
+        lineSpacing: Float
+    ): Float {
 
-        text.split("\n").forEach { paragraph ->
-            if (paragraph.length <= maxCharsPerLine) {
-                lines.add(paragraph)
-            } else {
-                var currentLine = ""
+        var y =
+            startY
 
-                paragraph.split(" ").forEach { word ->
-                    val testLine = (currentLine + " " + word).trim()
+        val fontMetrics =
+            paint.fontMetrics
 
-                    if (testLine.length <= maxCharsPerLine) {
-                        currentLine = testLine
+        val lineHeight =
+            (fontMetrics.descent - fontMetrics.ascent) +
+                    lineSpacing
+
+        val paragrafos =
+            text.split("\n")
+
+        for (paragrafo in paragrafos) {
+
+            if (paragrafo.isBlank()) {
+
+                y += lineHeight
+                continue
+            }
+
+            val palavras =
+                paragrafo.split(" ")
+
+            var linhaAtual =
+                ""
+
+            for (palavra in palavras) {
+
+                val linhaTeste =
+                    if (linhaAtual.isBlank()) {
+                        palavra
                     } else {
-                        if (currentLine.isNotBlank()) lines.add(currentLine)
-                        currentLine = word
+                        "$linhaAtual $palavra"
                     }
-                }
 
-                if (currentLine.isNotBlank()) lines.add(currentLine)
+                if (
+                    paint.measureText(linhaTeste) <=
+                    maxWidth
+                ) {
+
+                    linhaAtual =
+                        linhaTeste
+
+                } else {
+
+                    if (linhaAtual.isNotBlank()) {
+
+                        canvas.drawText(
+                            linhaAtual,
+                            x,
+                            y,
+                            paint
+                        )
+
+                        y += lineHeight
+                    }
+
+                    linhaAtual =
+                        palavra
+                }
+            }
+
+            if (linhaAtual.isNotBlank()) {
+
+                canvas.drawText(
+                    linhaAtual,
+                    x,
+                    y,
+                    paint
+                )
+
+                y += lineHeight
             }
         }
 
-        for (line in lines) {
-            canvas.drawText(line, x, y, paint)
-            y += 15f
+        return y
+    }
+
+    /*
+     * Mostra a imagem sem esticar.
+     * Faz o equivalente ao centerCrop do ImageView.
+     */
+    private fun desenharImagemCentralizada(
+        canvas: Canvas,
+        bitmap: Bitmap,
+        left: Float,
+        top: Float,
+        width: Float,
+        height: Float
+    ) {
+
+        val proporcaoDestino =
+            width / height
+
+        val proporcaoImagem =
+            bitmap.width.toFloat() /
+                    bitmap.height.toFloat()
+
+        val srcLeft: Int
+        val srcTop: Int
+        val srcRight: Int
+        val srcBottom: Int
+
+        if (
+            proporcaoImagem >
+            proporcaoDestino
+        ) {
+
+            val novaLargura =
+                (
+                        bitmap.height *
+                                proporcaoDestino
+                        ).toInt()
+
+            srcLeft =
+                (bitmap.width - novaLargura) / 2
+
+            srcRight =
+                srcLeft + novaLargura
+
+            srcTop = 0
+            srcBottom = bitmap.height
+
+        } else {
+
+            val novaAltura =
+                (
+                        bitmap.width /
+                                proporcaoDestino
+                        ).toInt()
+
+            srcTop =
+                (bitmap.height - novaAltura) / 2
+
+            srcBottom =
+                srcTop + novaAltura
+
+            srcLeft = 0
+            srcRight = bitmap.width
+        }
+
+        val origem =
+            android.graphics.Rect(
+                srcLeft,
+                srcTop,
+                srcRight,
+                srcBottom
+            )
+
+        val destino =
+            RectF(
+                left,
+                top,
+                left + width,
+                top + height
+            )
+
+        canvas.drawBitmap(
+            bitmap,
+            origem,
+            destino,
+            null
+        )
+    }
+
+    /*
+     * Carrega a foto respeitando a orientação EXIF.
+     * Também reduz imagens muito grandes antes de
+     * colocá-las na tela/PDF.
+     */
+    private fun carregarImagemComOrientacaoCorreta(
+        caminho: String
+    ): Bitmap {
+
+        val optionsBounds =
+            BitmapFactory.Options().apply {
+                inJustDecodeBounds = true
+            }
+
+        BitmapFactory.decodeFile(
+            caminho,
+            optionsBounds
+        )
+
+        var sampleSize = 1
+
+        while (
+            optionsBounds.outWidth / sampleSize > 1200 ||
+            optionsBounds.outHeight / sampleSize > 1200
+        ) {
+
+            sampleSize *= 2
+        }
+
+        val options =
+            BitmapFactory.Options().apply {
+                inSampleSize = sampleSize
+            }
+
+        val bitmap =
+            BitmapFactory.decodeFile(
+                caminho,
+                options
+            ) ?: throw IllegalStateException(
+                "Não foi possível carregar a imagem."
+            )
+
+        val exif =
+            ExifInterface(
+                caminho
+            )
+
+        val orientacao =
+            exif.getAttributeInt(
+                ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_NORMAL
+            )
+
+        val matrix =
+            Matrix()
+
+        when (orientacao) {
+
+            ExifInterface.ORIENTATION_ROTATE_90 ->
+                matrix.postRotate(90f)
+
+            ExifInterface.ORIENTATION_ROTATE_180 ->
+                matrix.postRotate(180f)
+
+            ExifInterface.ORIENTATION_ROTATE_270 ->
+                matrix.postRotate(270f)
+
+            ExifInterface.ORIENTATION_FLIP_HORIZONTAL ->
+                matrix.postScale(-1f, 1f)
+
+            ExifInterface.ORIENTATION_FLIP_VERTICAL ->
+                matrix.postScale(1f, -1f)
+        }
+
+        return if (
+            !matrix.isIdentity
+        ) {
+
+            Bitmap.createBitmap(
+                bitmap,
+                0,
+                0,
+                bitmap.width,
+                bitmap.height,
+                matrix,
+                true
+            )
+
+        } else {
+
+            bitmap
+        }
+    }
+
+    private fun corNivelAtencao(): Int {
+
+        return when {
+
+            nivelAtencao.contains(
+                "elevado",
+                ignoreCase = true
+            ) -> {
+
+                Color.parseColor(
+                    "#D9534F"
+                )
+            }
+
+            nivelAtencao.contains(
+                "moderado",
+                ignoreCase = true
+            ) -> {
+
+                Color.parseColor(
+                    "#E6A23C"
+                )
+            }
+
+            nivelAtencao.contains(
+                "baixo",
+                ignoreCase = true
+            ) -> {
+
+                Color.parseColor(
+                    "#28A745"
+                )
+            }
+
+            else -> {
+
+                Color.parseColor(
+                    "#063B78"
+                )
+            }
         }
     }
 }

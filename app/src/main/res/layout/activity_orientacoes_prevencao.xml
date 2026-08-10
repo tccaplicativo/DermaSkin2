@@ -1,215 +1,617 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootOrientacoesPrevencao"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7EFE8"
-    android:fillViewport="true">
+    android:background="@drawable/bg_login_base">
 
-    <LinearLayout
+    <!-- DECORAÇÃO -->
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.25"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_dots_dermaprev" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="210dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="-26dp"
+        android:alpha="0.10"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_hex_dermaprev" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="22dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DermaSkin"
-            android:textColor="#4A2A1A"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Orientações e prevenção"
-            android:textColor="#6B4A3A"
-            android:textSize="15sp" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
             android:orientation="vertical"
-            android:padding="22dp">
+            android:paddingStart="20dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="38dp">
+
+            <!-- TOPO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnVoltarPrevencao"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_card_login"
+                    android:contentDescription="Voltar"
+                    android:elevation="3dp"
+                    android:padding="11dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/baseline_chevron_left"
+                    app:tint="#0A4BCF" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Orientações"
+                    android:textColor="#0A3D91"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="46dp"
+                    android:layout_height="46dp" />
+
+            </LinearLayout>
+
+            <!-- INTRODUÇÃO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_home_primary_light_dermaprev"
+                android:elevation="4dp"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <FrameLayout
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_circle_white_dermaprev">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_orientacoes"
+                        app:tint="#0A4BCF" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cuide da sua pele"
+                        android:textColor="#063B78"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Hábitos de prevenção e observação da pele ajudam a perceber alterações que merecem atenção."
+                        android:textColor="#50627A"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- PREVENÇÃO DIÁRIA -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cuidados com a pele"
-                android:textColor="#4A2A1A"
-                android:textSize="24sp"
+                android:layout_marginTop="26dp"
+                android:text="Prevenção diária"
+                android:textColor="#0A3D91"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Alguns hábitos simples ajudam a reduzir riscos e favorecem a identificação precoce de alterações na pele."
-                android:textColor="#6B4A3A"
-                android:textSize="14sp" />
+                android:background="@drawable/bg_card_login"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:text="• Use protetor solar diariamente.\n\n• Reaplique ao longo do dia, especialmente após suor, banho ou exposição prolongada.\n\n• Evite exposição solar intensa entre 10h e 16h.\n\n• Utilize chapéu, boné, óculos de sol e roupas de proteção quando possível.\n\n• Observe regularmente manchas, pintas e feridas na pele.\n\n• Faça acompanhamento dermatológico quando houver indicação profissional ou fatores de risco."
+                    android:textColor="#50627A"
+                    android:textSize="13sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:padding="22dp">
+            </LinearLayout>
+
+            <!-- SINAIS -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prevenção diária"
-                android:textColor="#4A2A1A"
-                android:textSize="22sp"
+                android:layout_marginTop="26dp"
+                android:text="Sinais que merecem atenção"
+                android:textColor="#0A3D91"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="#FFF8F2"
-                android:lineSpacingExtra="5dp"
-                android:padding="16dp"
-                android:text="• Use protetor solar diariamente.\n\n• Reaplique o protetor ao longo do dia, principalmente após suor, banho ou exposição prolongada.\n\n• Evite exposição solar intensa entre 10h e 16h.\n\n• Use chapéu, boné, óculos de sol e roupas com proteção quando possível.\n\n• Observe manchas, pintas e feridas que não cicatrizam.\n\n• Faça acompanhamento dermatológico periódico, especialmente se houver histórico familiar."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fique atento se perceber:"
+                    android:textColor="#169AAA"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:padding="22dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:lineSpacingExtra="4dp"
+                    android:text="• Mancha ou pinta que aumenta de tamanho.\n\n• Mudança de cor, formato ou bordas.\n\n• Coceira persistente.\n\n• Sangramento sem causa aparente.\n\n• Ferida que não cicatriza.\n\n• Dor ou sensibilidade na lesão.\n\n• Pinta ou mancha muito diferente das demais."
+                    android:textColor="#50627A"
+                    android:textSize="13sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sinais de alerta"
-                android:textColor="#B3261E"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="#FFF8F2"
-                android:lineSpacingExtra="5dp"
-                android:padding="16dp"
-                android:text="Procure avaliação profissional se perceber:\n\n• Mancha que cresce rapidamente.\n\n• Mudança de cor, formato ou bordas.\n\n• Coceira persistente.\n\n• Sangramento sem motivo aparente.\n\n• Ferida que não cicatriza.\n\n• Lesão dolorida ou sensível.\n\n• Pinta muito diferente das outras."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/bg_card"
-            android:elevation="5dp"
-            android:orientation="vertical"
-            android:padding="22dp">
+            <!-- ABCDE -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
                 android:text="Método ABCDE"
-                android:textColor="#4A2A1A"
-                android:textSize="22sp"
+                android:textColor="#0A3D91"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="#FFF8F2"
-                android:lineSpacingExtra="5dp"
-                android:padding="16dp"
-                android:text="A — Assimetria: uma metade diferente da outra.\n\nB — Bordas: contornos irregulares ou mal definidos.\n\nC — Cor: presença de várias cores ou mudança de tonalidade.\n\nD — Diâmetro: lesões maiores ou que aumentam de tamanho merecem atenção.\n\nE — Evolução: qualquer mudança recente deve ser observada."
-                android:textColor="#3A2A24"
-                android:textSize="15sp" />
+                android:layout_marginTop="4dp"
+                android:text="Um recurso educativo para observar características da pele."
+                android:textColor="#687990"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <!-- A -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_circle"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="#169AAA"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Assimetria"
+                            android:textColor="#0A3D91"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Uma metade apresenta aparência diferente da outra."
+                            android:textColor="#687990"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- B -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_circle"
+                        android:gravity="center"
+                        android:text="B"
+                        android:textColor="#169AAA"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bordas"
+                            android:textColor="#0A3D91"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Contornos irregulares ou pouco definidos."
+                            android:textColor="#687990"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- C -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_circle"
+                        android:gravity="center"
+                        android:text="C"
+                        android:textColor="#169AAA"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cor"
+                            android:textColor="#0A3D91"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Presença de diferentes tonalidades ou mudança recente de cor."
+                            android:textColor="#687990"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- D -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_circle"
+                        android:gravity="center"
+                        android:text="D"
+                        android:textColor="#169AAA"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Diâmetro"
+                            android:textColor="#0A3D91"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Lesões maiores ou que aumentam de tamanho merecem atenção."
+                            android:textColor="#687990"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- E -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_circle"
+                        android:gravity="center"
+                        android:text="E"
+                        android:textColor="#169AAA"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Evolução"
+                            android:textColor="#0A3D91"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Mudanças recentes de tamanho, formato, cor ou sintomas devem ser observadas."
+                            android:textColor="#687990"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- AVISO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="3dp"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_circle">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_orientacoes"
+                        app:tint="#169AAA" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Aviso importante"
+                        android:textColor="#0A3D91"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:lineSpacingExtra="2dp"
+                        android:text="As informações desta tela são educativas e não substituem avaliação médica. Em caso de alteração ou dúvida, procure um profissional de saúde."
+                        android:textColor="#687990"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- BUSCAR ATENDIMENTO -->
+
+            <LinearLayout
+                android:id="@+id/btnEncaminhamentoPrevencao"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_card_encaminhamento_dermaprev"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_circle_white_dermaprev">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_encaminhamento"
+                        app:tint="#D47A32" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Buscar encaminhamento"
+                    android:textColor="#98511E"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_forward_dermaprev"
+                    app:tint="#D47A32" />
+
+            </LinearLayout>
+
+            <!-- FAZER NOVA ANÁLISE -->
+
+            <LinearLayout
+                android:id="@+id/btnNovaAnalisePrevencao"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_orientacoes_dermaprev"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_circle_white_dermaprev">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_add_monitoramento"
+                        app:tint="#169AAA" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="Fazer nova análise"
+                    android:textColor="#126370"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_forward_dermaprev"
+                    app:tint="#169AAA" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="#FFF8F2"
-            android:elevation="2dp"
-            android:orientation="vertical"
-            android:padding="18dp">
+    </ScrollView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Aviso importante"
-                android:textColor="#B3261E"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Essas orientações são educativas e não substituem uma consulta médica. Em caso de suspeita, procure atendimento profissional."
-                android:textColor="#6B4A3A"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnEncaminhamentoPrevencao"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#8B4A2F"
-            android:text="Buscar encaminhamento"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnNovaAnalisePrevencao"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#4A2A1A"
-            android:text="Fazer nova análise"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnVoltarPrevencao"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E8C9B8"
-            android:text="Voltar"
-            android:textAllCaps="false"
-            android:textColor="#4A2A1A"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>

@@ -1,0 +1,2 @@
+0 suspeita de câncer 
+1 não suspeita 

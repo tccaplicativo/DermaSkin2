@@ -313,14 +313,15 @@
             </LinearLayout>
 
             <!-- Botões -->
+
             <Button
-                android:id="@+id/btnVerAbcde"
+                android:id="@+id/btnGerarRelatorio"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="22dp"
                 android:background="@drawable/bg_button_primary_dermaprev"
                 android:backgroundTint="@null"
-                android:text="Ver método ABCDE"
+                android:text="Gerar relatório da triagem"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
@@ -328,15 +329,15 @@
                 app:backgroundTint="@null" />
 
             <Button
-                android:id="@+id/btnGerarRelatorio"
+                android:id="@+id/btnVerAbcde"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/bg_button_primary_dermaprev"
+                android:background="@drawable/bg_button_outline_dermaprev"
                 android:backgroundTint="@null"
-                android:text="Gerar relatório profissional"
+                android:text="Ver método ABCDE"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
+                android:textColor="#0A4BCF"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:backgroundTint="@null" />
@@ -349,20 +350,6 @@
                 android:background="@drawable/bg_button_outline_dermaprev"
                 android:backgroundTint="@null"
                 android:text="Nova análise"
-                android:textAllCaps="false"
-                android:textColor="#0A4BCF"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
-
-            <Button
-                android:id="@+id/btnVoltarResultado"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_button_outline_dermaprev"
-                android:backgroundTint="@null"
-                android:text="Voltar"
                 android:textAllCaps="false"
                 android:textColor="#0A4BCF"
                 android:textSize="16sp"

@@ -53,24 +53,27 @@
             android:paddingEnd="24dp"
             android:paddingBottom="28dp">
 
-            <!-- Topo -->
+            <!-- TOPO -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <TextView
+                <!-- Voltar -->
+                <ImageButton
+                    android:id="@+id/btnVoltarTopoCaptura"
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:background="@drawable/bg_card_login"
+                    android:contentDescription="Voltar"
                     android:elevation="3dp"
-                    android:gravity="center"
-                    android:text="‹"
-                    android:textColor="#60738A"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:padding="9dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/baseline_chevron_left"
+                    app:tint="#60738A" />
 
+                <!-- Marca -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -102,21 +105,24 @@
                         android:textColor="#1DB9D2"
                         android:textSize="20sp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
 
+                <!-- Progresso -->
                 <TextView
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:background="@drawable/bg_card_login"
                     android:elevation="3dp"
                     android:gravity="center"
-                    android:text="3/4"
+                    android:text="2/4"
                     android:textColor="#0A4BCF"
                     android:textSize="13sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
-            <!-- Título -->
+            <!-- TÍTULO -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,12 +136,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Centralize a lesão e mantenha a imagem nítida para continuar."
+                android:lineSpacingExtra="2dp"
+                android:text="Selecione a região da lesão e prepare a foto para continuar."
                 android:textColor="#50627A"
-                android:textSize="15sp"
-                android:lineSpacingExtra="2dp" />
+                android:textSize="15sp" />
 
-            <!-- Card principal -->
+            <!-- CARD PRINCIPAL -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -148,25 +154,28 @@
                 android:paddingEnd="18dp"
                 android:paddingBottom="20dp">
 
-                <!-- Área -->
+                <!-- Área da lesão -->
                 <TextView
-                    android:id="@+id/txtAreaCaptura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_input_dermaprev"
-                    android:paddingStart="16dp"
-                    android:paddingTop="14dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="14dp"
-                    android:text="Área da lesão: Não informada"
+                    android:text="Área da lesão"
                     android:textColor="#063B78"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
+                <Spinner
+                    android:id="@+id/spinnerAreaLesao"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp" />
+
                 <!-- Preview -->
                 <FrameLayout
-                    android:layout_width="270dp"
-                    android:layout_height="270dp"
+                    android:layout_width="243dp"
+                    android:layout_height="243dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="22dp">
 
@@ -179,6 +188,7 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_skin_placeholder" />
 
+                    <!-- Linha vertical -->
                     <View
                         android:layout_width="2dp"
                         android:layout_height="match_parent"
@@ -186,6 +196,7 @@
                         android:alpha="0.75"
                         android:background="#FFFFFF" />
 
+                    <!-- Linha horizontal -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -193,9 +204,10 @@
                         android:alpha="0.75"
                         android:background="#FFFFFF" />
 
+                    <!-- Área de foco -->
                     <View
-                        android:layout_width="145dp"
-                        android:layout_height="145dp"
+                        android:layout_width="131dp"
+                        android:layout_height="131dp"
                         android:layout_gravity="center"
                         android:background="@drawable/bg_focus_ring" />
 
@@ -225,6 +237,7 @@
                     android:textColor="#50627A"
                     android:textSize="13sp" />
 
+                <!-- Abrir câmera -->
                 <Button
                     android:id="@+id/btnAbrirCamera"
                     android:layout_width="match_parent"
@@ -239,21 +252,24 @@
                     android:textStyle="bold"
                     app:backgroundTint="@null" />
 
+                <!-- Usar foto -->
                 <Button
                     android:id="@+id/btnUsarFoto"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_button_primary_dermaprev"
+                    android:background="@drawable/bg_input_dermaprev"
                     android:backgroundTint="@null"
                     android:enabled="false"
                     android:text="Usar esta foto"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#0A4BCF"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     app:backgroundTint="@null" />
 
+                <!-- Tirar outra -->
                 <Button
                     android:id="@+id/btnTirarOutra"
                     android:layout_width="match_parent"
@@ -271,7 +287,7 @@
 
             </LinearLayout>
 
-            <!-- Dica -->
+            <!-- DICA -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -287,7 +303,7 @@
                     android:layout_height="54dp"
                     android:background="@drawable/bg_input_dermaprev"
                     android:gravity="center"
-                    android:text="i"
+                    android:text="!"
                     android:textColor="#0A4BCF"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -311,14 +327,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:lineSpacingExtra="2dp"
                         android:text="Evite fotos tremidas, escuras, com muito brilho ou muito distantes."
                         android:textColor="#50627A"
-                        android:textSize="13sp"
-                        android:lineSpacingExtra="2dp" />
+                        android:textSize="13sp" />
+
                 </LinearLayout>
 
             </LinearLayout>
 
+            <!-- Voltar -->
             <Button
                 android:id="@+id/btnVoltarCaptura"
                 android:layout_width="match_parent"
@@ -334,6 +352,7 @@
                 app:backgroundTint="@null" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </FrameLayout>

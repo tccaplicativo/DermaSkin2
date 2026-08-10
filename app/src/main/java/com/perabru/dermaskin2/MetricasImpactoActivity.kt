@@ -53,7 +53,7 @@ class MetricasImpactoActivity : AppCompatActivity() {
         txtRelatoriosMetricas.text = "57"
 
         txtResumoImpacto.text =
-            "O DermaSkin pode contribuir para ampliar o acesso à triagem inicial, " +
+            "O DermaPrev pode contribuir para ampliar o acesso à triagem inicial, " +
                     "organizar informações para consulta médica e incentivar a busca por atendimento profissional."
 
         txtIndicadoresImpacto.text =

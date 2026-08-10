@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DermaSkin2"
+rootProject.name = "DermaPrev"
 include(":app")

@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:gravity="center"
-                android:text="Analisando imagem e respostas do questionário."
+                android:text="Analisando imagem, respostas e perfil de saúde."
                 android:textColor="#50627A"
                 android:textSize="15sp"
                 android:lineSpacingExtra="2dp" />
@@ -214,7 +214,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="• Verificando qualidade da imagem"
+                        android:text="• Preparando imagem para análise"
                         android:textColor="#50627A"
                         android:textSize="14sp" />
 

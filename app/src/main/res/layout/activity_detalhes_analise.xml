@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootDetalhesAnalise"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_base">
+
+    <!-- DECORAÇÃO -->
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:alpha="0.28"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_dots_dermaprev" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="210dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="-26dp"
+        android:alpha="0.12"
+        android:contentDescription="@null"
+        android:src="@drawable/bg_hex_dermaprev" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="bottom"
+        android:alpha="0.20"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_wave_bottom_dermaprev" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="22dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="22dp"
+            android:paddingBottom="30dp">
+
+            <!-- TOPO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnVoltarDetalhe"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_card_login"
+                    android:contentDescription="Voltar"
+                    android:elevation="3dp"
+                    android:padding="11dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/baseline_chevron_left"
+                    app:tint="#0A4BCF" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Detalhes da análise"
+                    android:textColor="#0A3D91"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="46dp"
+                    android:layout_height="46dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="Veja as informações registradas nesta triagem."
+                android:textColor="#60738A"
+                android:textSize="13sp" />
+
+            <!-- FOTO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Imagem da lesão"
+                    android:textColor="#0A3D91"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imgDetalheLesao"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@drawable/bg_input_dermaprev"
+                    android:clipToOutline="true"
+                    android:contentDescription="Imagem da lesão analisada"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_skin_placeholder" />
+
+                <TextView
+                    android:id="@+id/txtAreaDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="Área analisada:"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDataDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Data da análise"
+                    android:textColor="#687990"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!-- RESULTADO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resultado da triagem"
+                    android:textColor="#0A3D91"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtNivelAtencaoDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Nível de atenção"
+                    android:textColor="#063B78"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtPercentualDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Suspeita visual de lesões cutâneas:"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDescricaoDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="#50627A"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <!-- INFORMAÇÕES RELATADAS -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Informações relatadas"
+                android:textColor="#0A3D91"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <!-- TEMPO -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tempo da lesão"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtTempoLesaoDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- TAMANHO -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Mudança de tamanho"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtMudancaTamanhoDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- COR -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Mudança de cor"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtMudancaCorDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- COCEIRA -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Coceira"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtCoceiraDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- SANGRAMENTO -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Sangramento"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtSangramentoDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- DOR -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Dor"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtDorDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- FORMATO -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Formato irregular"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtFormatoDetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- IA -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_login"
+                android:elevation="3dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Classificação visual da IA"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/txtClassificacaoIADetalhe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#173B70"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="2dp"
+                    android:text="A classificação visual é apenas uma saída do modelo de IA e não representa diagnóstico médico."
+                    android:textColor="#687990"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <!-- BOTÕES -->
+
+            <Button
+                android:id="@+id/btnVerAbcdeDetalhe"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_button_primary_dermaprev"
+                android:backgroundTint="@null"
+                android:text="Ver detalhes pelo método ABCDE"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center"
+                android:lineSpacingExtra="2dp"
+                android:text="Esta triagem é apenas um recurso auxiliar e não substitui avaliação de um profissional de saúde."
+                android:textColor="#75869A"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

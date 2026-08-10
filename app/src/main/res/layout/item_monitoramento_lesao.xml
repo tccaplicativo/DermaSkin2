@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:background="@drawable/bg_card_login"
+    android:elevation="4dp"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <!-- INFORMAÇÃO PRINCIPAL -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imgMonitoramentoLesao"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:background="@drawable/bg_card_monitoramento_dermaprev"
+            android:clipToOutline="true"
+            android:contentDescription="Foto da lesão"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_skin_placeholder" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtNomeLesao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Braço • Lesão 1"
+                android:textColor="#0A3D91"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_calendar_monitoramento"
+                    app:tint="#2E8B67" />
+
+                <TextView
+                    android:id="@+id/txtDataInicioMonitoramento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Iniciado em 09/08/2026"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_evolucao_monitoramento"
+                    app:tint="#2E8B67" />
+
+                <TextView
+                    android:id="@+id/txtQuantidadeRegistros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="1 registro"
+                    android:textColor="#687990"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ÚLTIMO REGISTRO -->
+
+    <TextView
+        android:id="@+id/txtUltimoRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="Último registro: 09/08/2026"
+        android:textColor="#52647A"
+        android:textSize="11sp" />
+
+    <!-- VER EVOLUÇÃO -->
+
+    <LinearLayout
+        android:id="@+id/btnVerEvolucao"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/bg_card_monitoramento_dermaprev"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_evolucao_monitoramento"
+            app:tint="#2E8B67" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_weight="1"
+            android:text="Ver evolução"
+            android:textColor="#174D3B"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_chevron_forward_dermaprev"
+            app:tint="#2E8B67" />
+
+    </LinearLayout>
+
+</LinearLayout>
